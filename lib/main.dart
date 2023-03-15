@@ -1,8 +1,6 @@
-
-
-import 'package:basic_app/dashboard.dart';
-import 'package:basic_app/location.dart';
 import 'package:flutter/material.dart';
+
+import 'dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,13 +45,12 @@ class MyHomePageState extends State<MyHomePage> {
               child: Image(
                 image:AssetImage('ispourt.png'),
                 fit: BoxFit.cover,
-
               ),
             ),
             ListTile(
               title: const Text('DashBoard'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const DashBoard()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> DashBoard()));
               },
             ),
             ListTile(
@@ -69,7 +66,9 @@ class MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.only(left: 20),
                   child: ListTile(
                     title: const Text('ServiceRequest'),
-                    onTap: () {},
+                    onTap: () {
+                     // Navigator.push(context, MaterialPageRoute(builder: (context)=> ));
+                    },
                   )),
               Padding(
                   padding: const EdgeInsets.only(left: 20),

@@ -13,11 +13,11 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
   List<Places> location=[
-    Places( name: 'Hyderabad'),
-    Places( name: 'Chennai'),
-    Places( name: 'Pune'),
-    Places( name: 'Visakha Pattanam'),
-    Places( name: 'Nellore')
+    Places( name: 'Hyderabad-2.5L sq.ft.'),
+    Places( name: 'Chennai -1.5L sq.ft'),
+    Places( name: 'Pune-2L sq.ft'),
+    Places( name: 'Vijayawada-1.8L sq.ft.'),
+    Places( name: 'Bangalore-2.2L sq.ft')
   ];
   Widget locationTemplate(location){
   return  Card(
