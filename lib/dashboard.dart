@@ -1,5 +1,7 @@
 import 'package:basic_app/buttoncard.dart';
+import 'package:basic_app/drawerwidget.dart';
 import 'package:basic_app/location.dart';
+import 'package:basic_app/main.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
@@ -11,6 +13,7 @@ class DashBoard extends StatelessWidget {
       appBar: AppBar(
         title: Text('Dashboard'),
       ),
+      drawer: MyDrawer(),
       body: Container(
         width: double.infinity,
         height: double.infinity,
