@@ -22,7 +22,7 @@ class _MyDrawerState extends State<MyDrawer> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DashBoard()),
+                MaterialPageRoute(builder: (context) => const DashBoard()),
               );
             },
           ),

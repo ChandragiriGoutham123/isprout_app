@@ -1,56 +1,57 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'places.dart';
-void main()=>runApp(const MaterialApp(
-  home:Location(),
-));
 
-class Location extends StatefulWidget {
-  const Location({Key? key}) : super(key: key);
+import 'centers.dart';
 
-  @override
-  State<Location> createState() => _LocationState();
+class Location {
+  final String name;
+  final List<Centers> centers;
+  final double area;
+
+  Location({required this.name, required this.centers, required this.area});
 }
 
-class _LocationState extends State<Location> {
-  List<Places> location=[
-    Places( name: 'Hyderabad-2.5L sq.ft.'),
-    Places( name: 'Chennai -1.5L sq.ft'),
-    Places( name: 'Pune-2L sq.ft'),
-    Places( name: 'Vijayawada-1.8L sq.ft.'),
-    Places( name: 'Bangalore-2.2L sq.ft')
+class LocationPage extends StatefulWidget {
+  const LocationPage({Key? key}) : super(key: key);
+
+  @override
+  State<LocationPage> createState() => _LocationsState();
+}
+
+class _LocationsState extends State<LocationPage> {
+  List<Location> locations = [
+    Location(name: 'Hyderabad', area: 1000, centers: [
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
+    ]),
+    Location(name: 'chennai', area: 1000, centers: [
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
+    ]),
+    Location(name: 'bangalore', area: 1000, centers: [
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
+    ]),
   ];
-  Widget locationTemplate(location){
-  return  Card(
-      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-       child: Padding(
-         padding: const EdgeInsets.all(10.0),
-         child: Column(
-           children:<Widget> [
-             const SizedBox(height: 6.0,),
-              Text(
-                location.name,
-                style: const TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.blue,
-                ),
-              )
-           ],
-         ),
-       ),
-  );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white60,
-      appBar: AppBar(
-        title:const Text('Locations'),
-        centerTitle: true,
-        backgroundColor: Colors.blueGrey,
-      ),
-      body: Column(
-        children:location.map((loc)=>locationTemplate(loc) ).toList()
+      appBar: AppBar(title: Text('Locations')),
+      body: ListView.builder(
+        itemCount: locations.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(locations[index].name),
+            subtitle: Text('No.of Centers ${locations[index].centers.length}'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CenterPage(),));
+            },
+          );
+        },
       ),
     );
   }
