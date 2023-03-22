@@ -10,16 +10,17 @@ class Button_Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Card(
-        margin: EdgeInsets.only(left: 30, top: 30, right: 30),
+        margin: const EdgeInsets.only(left: 30, top: 30, right: 30),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Container(
+        child: SizedBox(
           height: 80,
           width: 140,
           child: Center(
-            child: Text(title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

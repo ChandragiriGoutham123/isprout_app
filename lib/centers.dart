@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Centers{
@@ -20,13 +19,15 @@ class CenterPage extends StatefulWidget {
 
 class _CenterPageState extends State<CenterPage> {
   List<Centers> centers=[
-
+    Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+    Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
+    Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
   ];
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-     appBar: AppBar(title: Text('Ceneters Available')),
+     appBar: AppBar(title: const Text('Centers Available')),
      body:ListView.builder(
          itemCount:centers.length,
          itemBuilder: (context,int index){

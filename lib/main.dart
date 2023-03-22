@@ -1,7 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import './location.dart';
-import 'main/drawerwidget.dart';
-void main() =>runApp(const MyApp());
+import 'firebase_options.dart';
+import 'main/drawer_widget.dart';
+void main() async {
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());}
 
 
 class MyApp extends StatelessWidget {
@@ -30,7 +35,7 @@ class MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('iSprout'),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: Column(
         children: <Widget>[
          Container(

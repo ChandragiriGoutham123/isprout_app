@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "76792423265",
+    "project_id": "isp-test-a441c",
+    "storage_bucket": "isp-test-a441c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76792423265:android:2f5f96b6610edc28531b20",
+        "android_client_info": {
+          "package_name": "com.example.basic_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76792423265-r9bqji03c4acd9jjmqhpmsrislg866al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIpdiKyxPScWUfFmJJncT-cpkaFRCeDKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76792423265-r9bqji03c4acd9jjmqhpmsrislg866al.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

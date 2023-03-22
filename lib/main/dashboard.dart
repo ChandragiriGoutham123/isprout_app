@@ -1,7 +1,6 @@
-import 'package:basic_app/dummy.dart';
 import 'package:basic_app/location.dart';
-import 'package:basic_app/main/buttoncard.dart';
-import 'package:basic_app/main/drawerwidget.dart';
+import 'package:basic_app/main/button_card.dart';
+import 'package:basic_app/main/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
@@ -11,9 +10,9 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: const Text('Dashboard'),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -24,92 +23,80 @@ class DashBoard extends StatelessWidget {
               title:'Area\n ' ,
 
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (Context)=>(LocationPage())));
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage())));
                 },
             ),
             Button_Card(
               title: 'Location/Center',
 
+
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (Context)=>(LocationPage())));
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage())));
               },
             ),
             Button_Card(
               title: 'Workstations',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Potential Revenue',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Employees',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Revenue',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
-              title: 'Expences',
+              title: 'Expenses',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Occupancy',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Clients',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Happiness Index',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Service Request',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Conf.Bookings',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Leads',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Lead PipeLine',
               onTap: () {
-                print('Card Tapped');
               },
             ),
             Button_Card(
               title: 'Lead Closed',
               onTap: () {
-                print('Card Tapped');
               },
             ),
           ],

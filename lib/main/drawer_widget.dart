@@ -5,17 +5,23 @@ class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
 
   @override
-  _MyDrawerState createState() => _MyDrawerState();
+  MyDrawerState createState() => MyDrawerState();
 }
 
-class _MyDrawerState extends State<MyDrawer> {
+class MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          DrawerHeader(
-            child: Image.asset('ispourt.png'),
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('ispourt.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Text(''),
           ),
           ListTile(
             title: const Text('DashBoard'),

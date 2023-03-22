@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'centers.dart';
@@ -21,9 +20,7 @@ class LocationPage extends StatefulWidget {
 class _LocationsState extends State<LocationPage> {
   List<Location> locations = [
     Location(name: 'Hyderabad', area: 1000, centers: [
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
+
     ]),
     Location(name: 'chennai', area: 1000, centers: [
       Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
@@ -40,7 +37,7 @@ class _LocationsState extends State<LocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Locations')),
+      appBar: AppBar(title: const Text('Locations')),
       body: ListView.builder(
         itemCount: locations.length,
         itemBuilder: (context, index) {
@@ -48,7 +45,7 @@ class _LocationsState extends State<LocationPage> {
             title: Text(locations[index].name),
             subtitle: Text('No.of Centers ${locations[index].centers.length}'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => CenterPage(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CenterPage(),));
             },
           );
         },
