@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class Button_Card extends StatelessWidget {
   final String title;
   final Function onTap;
