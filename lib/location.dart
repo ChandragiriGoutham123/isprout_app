@@ -1,55 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'centers.dart';
+import 'center_model.dart';
 
-class Location {
+class LocationModel {
   final String name;
-  final List<Centers> centers;
-  final double area;
+ final List<CenterModel> center;
+  final double totalarea;
 
-  Location({required this.name, required this.centers, required this.area});
-}
+  LocationModel({required this.name, required this.center,required this.totalarea});
 
-class LocationPage extends StatefulWidget {
-  const LocationPage({Key? key}) : super(key: key);
 
-  @override
-  State<LocationPage> createState() => _LocationsState();
-}
+  factory LocationModel.fromSnapshot(DocumentSnapshot snap){
+    var snapshot = snap.data() as Map<String, dynamic>;
+    return LocationModel(
 
-class _LocationsState extends State<LocationPage> {
-  List<Location> locations = [
-    Location(name: 'Hyderabad', area: 1000, centers: [
+        name: snapshot['name'],
+        center:snapshot['centers'],
+        totalarea:  snapshot['area'],
 
-    ]),
-    Location(name: 'chennai', area: 1000, centers: [
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
-    ]),
-    Location(name: 'bangalore', area: 1000, centers: [
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30),
-      Centers(area: 1000, name: "Kphb", floors: 5, parking: 30)
-    ]),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Locations')),
-      body: ListView.builder(
-        itemCount: locations.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(locations[index].name),
-            subtitle: Text('No.of Centers ${locations[index].centers.length}'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CenterPage(),));
-            },
-          );
-        },
-      ),
     );
   }
+  Map<String,dynamic> toJson()=>{
+    "name":name,
+    "centers":center,
+    "area":totalarea,
+  };
 }
+

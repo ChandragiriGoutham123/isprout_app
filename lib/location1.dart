@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class LocationPage1 extends StatefulWidget {
@@ -9,30 +8,42 @@ class LocationPage1 extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage1> {
-
+TextEditingController _nameController=TextEditingController();
+TextEditingController _cityController=TextEditingController();
+@override
+  void dispose() {
+  _nameController.dispose();
+  _cityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Location Available')),
-      body:
-
-           ElevatedButton(
+      body:Column(
+        children:<Widget> [
+          TextField(
+            controller: _nameController,
+            decoration:InputDecoration(labelText:'Location name'),
+          ),
+          TextField(
+            controller: _cityController,
+            decoration: InputDecoration(labelText: 'city name'),),
+          ElevatedButton(
             child: const Text('Add'),
             onPressed: () {
-              _create();
+
             },
 
-      ),
+          ),
+        ],
+      )
+
+
     );
   }
+
 }
 
-Future _create() async {
-  final locationcollection = FirebaseFirestore.instance.collection('Locations');
-  final docref = locationcollection.doc('user-id');
-  await docref.set({
-    'name': 'Hyderbad',
-    'city': 'Kphb'
-  });
-}
+
