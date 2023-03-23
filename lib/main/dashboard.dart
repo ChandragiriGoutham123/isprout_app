@@ -1,4 +1,5 @@
 import 'package:basic_app/location.dart';
+import 'package:basic_app/location1.dart';
 import 'package:basic_app/main/button_card.dart';
 import 'package:basic_app/main/drawer_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,82 +20,80 @@ class DashBoard extends StatelessWidget {
         color: Colors.grey[200],
         child: Wrap(
           children: <Widget>[
-            Button_Card(
+            ButtonCard(
               title:'Area\n ' ,
 
               onTap: () {
                 Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage())));
                 },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Location/Center',
-
-
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage())));
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage1())));
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Workstations',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Potential Revenue',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Employees',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Revenue',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Expenses',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Occupancy',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Clients',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Happiness Index',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Service Request',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Conf.Bookings',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Leads',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Lead PipeLine',
               onTap: () {
               },
             ),
-            Button_Card(
+            ButtonCard(
               title: 'Lead Closed',
               onTap: () {
               },

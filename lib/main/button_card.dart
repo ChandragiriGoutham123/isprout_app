@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class Button_Card extends StatelessWidget {
+class ButtonCard extends StatelessWidget {
   final String title;
   final Function onTap;
 
-  const Button_Card({super.key, required this.title, required this.onTap});
+  const ButtonCard({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

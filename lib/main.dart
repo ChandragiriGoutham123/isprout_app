@@ -39,7 +39,7 @@ class MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
          Container(
-
+           child: Text('Welcome'),
          )
         ],
       ),
