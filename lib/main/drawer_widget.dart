@@ -1,4 +1,6 @@
+import 'package:basic_app/pages/location_page.dart';
 import 'package:flutter/material.dart';
+import '../pages/center_page.dart';
 import 'dashboard.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -79,11 +81,15 @@ class MyDrawerState extends State<MyDrawer> {
             children: [
               ListTile(
                 title: const Text('Locations'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage())));
+                },
               ),
               ListTile(
                 title: const Text('Centers'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>(const CenterPage())));
+                },
               ),
               ListTile(
                 title: const Text('Assets'),

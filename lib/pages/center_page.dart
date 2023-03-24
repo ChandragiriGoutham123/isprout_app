@@ -1,4 +1,4 @@
-import 'package:basic_app/center_model.dart';
+import 'package:basic_app/models/center_model.dart';
 import 'package:basic_app/main/crud.dart';
 import 'package:flutter/material.dart';
 
@@ -16,19 +16,11 @@ class _LocationPageState extends State<CenterPage> {
   final TextEditingController _parkingController = TextEditingController();
 
   @override
-  void dispose() {
-    _nameController.dispose();
-    _floorsController.dispose();
-    _areaController.dispose();
-    _parkingController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Centers Available')),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextField(
               controller: _nameController,
@@ -49,10 +41,11 @@ class _LocationPageState extends State<CenterPage> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Available Parking'),
             ),
+            SizedBox(height: 30.0,),
             ElevatedButton(
               child: const Text('Add'),
               onPressed: () {
-                Crud.create(CenterModel(
+                Crud.createCenter(CenterModel(
                     name: _nameController.text,
                     floors: _floorsController.text,
                     area: _areaController.text,
@@ -60,16 +53,22 @@ class _LocationPageState extends State<CenterPage> {
               },
             ),
             StreamBuilder<List<CenterModel>>(
-              stream: Crud.read(),
+              stream: Crud.readCenter(),
               builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return LinearProgressIndicator();
+                }
 
-                  final centerdata = snapshot.data;
-                  return Expanded(
+                final centerData = snapshot.data;
+                return Expanded(
+                    child: Card(
+                      margin: EdgeInsets.all(10.0),
+                      elevation: 10,
                       child: ListView.builder(
-                          itemCount: centerdata!.length,
+                          itemCount: centerData!.length,
                           itemBuilder: (context, index) {
-                            final singleCenter=centerdata![index];
-                            return Container(
+                            final singleCenter = centerData[index];
+                            return Card(
                               child: ListTile(
                                 leading: Container(
                                   width: 40,
@@ -77,13 +76,12 @@ class _LocationPageState extends State<CenterPage> {
                                   decoration:
                                       BoxDecoration(shape: BoxShape.circle),
                                 ),
-
                                 title: Text("${singleCenter.name}"),
                                 subtitle: Text("${singleCenter.area}"),
                               ),
                             );
-                          }));
-
+                          }),
+                    ));
               },
             )
           ],
