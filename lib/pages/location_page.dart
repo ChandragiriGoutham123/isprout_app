@@ -10,10 +10,10 @@ class LocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage> {
-  TextEditingController _idController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _stateController = TextEditingController();
-  TextEditingController _countryController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _stateController = TextEditingController();
+  final TextEditingController _countryController = TextEditingController();
 
   @override
   void dispose() {
@@ -46,17 +46,52 @@ class _LocationPageState extends State<LocationPage> {
               controller: _countryController,
               decoration: const InputDecoration(labelText: 'country'),
             ),
+            const SizedBox(
+              height: 30.0,
+            ),
             ElevatedButton(
               child: const Text('Add'),
               onPressed: () {
-                Crud.createLocation(LocationModel(locationId: _idController.text,
+                Crud.createLocation(LocationModel(
+                    locationId: _idController.text,
                     locationName: _nameController.text,
                     state: _stateController.text,
-                    country: _countryController.text
-                )
-                );
+                    country: _countryController.text));
               },
             ),
+            StreamBuilder<List<LocationModel>>(
+              stream: Crud.readLocation(),
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return const LinearProgressIndicator();
+                }
+
+                final locationData = snapshot.data;
+                return Expanded(
+                    child: Card(
+                  margin: const EdgeInsets.all(10.0),
+                  elevation: 10,
+                  child: ListView.builder(
+                      itemCount: locationData!.length,
+                      itemBuilder: (context, index) {
+                        final singleLocation = locationData[index];
+                        return Card(
+                          margin: const EdgeInsets.all(10.0),
+                          child: ListTile(
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              decoration:
+                                  const BoxDecoration(shape: BoxShape.circle),
+                            ),
+                            title: Text(singleLocation.locationName),
+                            subtitle: Text(singleLocation.state),
+                          ),
+                        );
+                      }),
+                ));
+              },
+            )
           ],
         ));
   }

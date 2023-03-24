@@ -7,20 +7,20 @@ class Crud {
     final centerCollection = FirebaseFirestore.instance.collection("Centers");
     final docRef = centerCollection.doc();
 
-    final newCenter = CenterModel(
-        name: center.name,
-        floors: center.floors,
-        area: center.area,
-        parking: center.parking
-    ).toJson();
-    try {
-      await docRef.set(newCenter);
-    } catch (e) {
-      print('Some error occured $e');
-    }
-  }
+    //   final newCenter = CenterModel(
+    //       name: center.name,
+    //       floors: center.floors,
+    //       area: center.area,
+    //       parking: center.parking
+    //   ).toJson();
+    //   try {
+    //     await docRef.set(newCenter);
+    //   } catch (e) {
+    //     print('Some error occured $e');
+    //   }
+     }
 
-  static Stream<List<CenterModel>> readCenter() {
+ static  Stream<List<CenterModel>> readCenter() {
     final centerCollection = FirebaseFirestore.instance.collection("Centers");
     return centerCollection.snapshots().map((querysnapshot) =>
         querysnapshot.docs.map((e) => CenterModel.fromSnapshot(e)).toList());
@@ -41,7 +41,7 @@ class Crud {
       print('Some error occured $e');
     }
   }
-  static Stream<List<LocationModel>> readLocation() {
+   static Stream<List<LocationModel>> readLocation() {
     final locationCollection = FirebaseFirestore.instance.collection("Locations");
     return locationCollection.snapshots().map((querysnapshot) =>
         querysnapshot.docs.map((e) => LocationModel.fromSnapshot(e)).toList());

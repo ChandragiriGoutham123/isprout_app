@@ -10,48 +10,12 @@ class CenterPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<CenterPage> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _floorsController = TextEditingController();
-  final TextEditingController _areaController = TextEditingController();
-  final TextEditingController _parkingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Centers Available')),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(labelText: 'City Name'),
-            ),
-            TextField(
-              controller: _floorsController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Number of floors'),
-            ),
-            TextField(
-              controller: _areaController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Area'),
-            ),
-            TextField(
-              controller: _parkingController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Available Parking'),
-            ),
-            SizedBox(height: 30.0,),
-            ElevatedButton(
-              child: const Text('Add'),
-              onPressed: () {
-                Crud.createCenter(CenterModel(
-                    name: _nameController.text,
-                    floors: _floorsController.text,
-                    area: _areaController.text,
-                    parking: _parkingController.text));
-              },
-            ),
+        body:
             StreamBuilder<List<CenterModel>>(
               stream: Crud.readCenter(),
               builder: (context, snapshot) {
@@ -69,6 +33,7 @@ class _LocationPageState extends State<CenterPage> {
                           itemBuilder: (context, index) {
                             final singleCenter = centerData[index];
                             return Card(
+                              margin: EdgeInsets.all(10.0),
                               child: ListTile(
                                 leading: Container(
                                   width: 40,
@@ -76,15 +41,14 @@ class _LocationPageState extends State<CenterPage> {
                                   decoration:
                                       BoxDecoration(shape: BoxShape.circle),
                                 ),
-                                title: Text("${singleCenter.name}"),
-                                subtitle: Text("${singleCenter.area}"),
+                              //  title: Text("${singleCenter.name}"),
+                                //subtitle: Text("${singleCenter.area}"),
                               ),
                             );
                           }),
                     ));
               },
             )
-          ],
-        ));
+        );
   }
 }
