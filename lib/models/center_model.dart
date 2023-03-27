@@ -38,22 +38,22 @@ class CenterModel {
   factory CenterModel.fromSnapshot(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
     return CenterModel(
-        centerId:snapshot["Id"],
-      centerName: snapshot["name"],
+        centerId:snapshot["centerId"],
+      centerName: snapshot["centerName"],
       buildingName: snapshot["buildingName"],
       locationId: snapshot["locationId"],
-      address: snapshot["Address"],
+      address: snapshot["address"],
       pincode: snapshot["pincode"],
       area: snapshot["area"],
       efficiency:snapshot["efficiency"],
-      numberOfFloors: snapshot["number of floors"],
-      landLineNumber: snapshot["landlineNumber"],
-      numberOfCarParking: snapshot["number of car parking"],
-      numberOfBikeParking: snapshot["number of Bike Parking"],
+      numberOfFloors: snapshot["numberOfFloors"],
+      landLineNumber: snapshot["landLineNumber"],
+      numberOfCarParking: snapshot["numberOfCarParking"],
+      numberOfBikeParking: snapshot["numberOfBikeParking"],
       contactName: snapshot["contactName"],
       contactNumber: snapshot["contactNumber"],
-      startTime: snapshot["start time"],
-      endTime: snapshot["end time"]
+      startTime: snapshot["startTime"],
+      endTime: snapshot["endTime"]
 
 
     );
@@ -61,8 +61,8 @@ class CenterModel {
 
   Map<String, dynamic> toJson() =>
       {
-        "Id":centerId,
-        "name":centerName,
+        "centerId":centerId,
+        "centerName":centerName,
         "buildingName":buildingName,
         "locationId":locationId,
         "address":address,

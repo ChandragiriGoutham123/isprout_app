@@ -1,6 +1,6 @@
-import 'package:basic_app/pages/center_page.dart';
 import 'package:basic_app/main/button_card.dart';
 import 'package:basic_app/main/drawer_widget.dart';
+import 'package:basic_app/pages/center_page.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
@@ -23,13 +23,11 @@ class DashBoard extends StatelessWidget {
               title:'Area\n ' ,
 
               onTap: () {
-              //  Navigator.push(context,MaterialPageRoute(builder: (context)=>(const LocationPage())));
                 },
             ),
-            ButtonCard(
-              title: 'Location/Center',
+            ButtonCard(title: 'Location/Center',
               onTap: () {
-
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>(const CenterPage())));
               },
             ),
             ButtonCard(
