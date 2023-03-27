@@ -1,6 +1,6 @@
+import 'package:basic_app/pages/ConferenceRoom_page.dart';
 import 'package:basic_app/pages/location_page.dart';
 import 'package:flutter/material.dart';
-import '../models/add_center.dart';
 import '../pages/center_page.dart';
 import 'dashboard.dart';
 
@@ -89,7 +89,7 @@ class MyDrawerState extends State<MyDrawer> {
               ListTile(
                 title: const Text('Centers'),
                 onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=>(const AddCenter())));
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>(const CenterPage())));
                 },
               ),
               ListTile(
@@ -114,7 +114,9 @@ class MyDrawerState extends State<MyDrawer> {
               ),
               ListTile(
                 title: const Text('Conference Rooms'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>const ConferenceRoomPage()));
+                },
               ),
               ListTile(
                 title: const Text('Parking'),

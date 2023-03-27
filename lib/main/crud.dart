@@ -1,76 +1,64 @@
 import 'package:basic_app/models/center_model.dart';
+import 'package:basic_app/models/conferenceRoom_model.dart';
 import 'package:basic_app/models/location_model.dart';
+import 'package:basic_app/models/private_offices_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Crud {
-  static createCenter(CenterModel center) async {
-    final centerCollection = FirebaseFirestore.instance.collection("Centers");
-    final docRef = centerCollection.doc();
+  //Center Services
+  final CollectionReference _centerCollection =
+      FirebaseFirestore.instance.collection("Centers");
 
-    final newCenter = CenterModel(
-            centerId: center.centerId,
-            centerName: center.centerName,
-            buildingName: center.buildingName,
-            locationId: center.locationId,
-            address: center.address,
-            pincode: center.pincode,
-            area: center.area,
-            efficiency: center.efficiency,
-            numberOfFloors: center.numberOfFloors,
-            landLineNumber: center.landLineNumber,
-            numberOfCarParking: center.numberOfCarParking,
-            numberOfBikeParking: center.numberOfBikeParking,
-            contactName: center.contactName,
-            contactNumber: center.contactNumber,
-            startTime: center.startTime,
-            endTime: center.endTime)
-        .toJson();
-    try {
-      await docRef.set(newCenter);
-    } catch (e) {
-      print('Some error occured $e');
-    }
+  Future<void> addCenter(CenterModel center) {
+    return _centerCollection.add(center.toJson());
   }
 
-
-  static Stream<List<CenterModel>> readCenter() {
-    final centerCollection = FirebaseFirestore.instance.collection("Centers");
-    return centerCollection.snapshots().map((querySnapshot) {
-      print("Mapping Center");
-      List<CenterModel> result = [];
-      try{
-        result = querySnapshot.docs.map((doc) => CenterModel.fromSnapshot(doc)).toList();
-      }catch(ex){
-        print("Exception occurred");
-        print(ex);
-      }
-      return result;
-    });
+  Stream<List<CenterModel>> getCenter() {
+    return _centerCollection.snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => CenterModel.fromSnapshot(doc)).toList());
   }
 
+  //Location Services
 
-  static createLocation(LocationModel location) async {
-    final locationCollection =
-        FirebaseFirestore.instance.collection("Locations");
-    final docRef = locationCollection.doc();
+  final CollectionReference _locationsCollection =
+      FirebaseFirestore.instance.collection('Locations');
 
-    final newLocation = LocationModel(
-            locationId: location.locationId,
-            locationName: location.locationName,
-            state: location.state,
-            country: location.country)
-        .toJson();
-    try {
-      await docRef.set(newLocation);
-    } catch (e) {
-      print('Some error occured $e');
-    }
+
+  Future<void> addLocation(LocationModel location) {
+    return _locationsCollection.add(location.toJson());
   }
 
-  static Stream<List<LocationModel>> readLocation() {
-    final locationCollection =
-        FirebaseFirestore.instance.collection("Locations");
-    return locationCollection.snapshots().map((querysnapshot) =>
-        querysnapshot.docs.map((e) => LocationModel.fromSnapshot(e)).toList());
+  Stream<List<LocationModel>> getLocations() {
+    return _locationsCollection.snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => LocationModel.fromSnapshot(doc)).toList());
   }
+
+  //Conference Room Services
+
+  final CollectionReference _conferenceRoomCollection =
+  FirebaseFirestore.instance.collection("Conference Rooms");
+
+  Future<void> addConference(ConferenceRoomModel room){
+    return _conferenceRoomCollection.add(room.toJson());
+
+  }
+
+  Stream<List<ConferenceRoomModel>> getConferenceRoom() {
+    return _conferenceRoomCollection.snapshots().map((snapshot) => snapshot.docs
+        .map((doc) => ConferenceRoomModel.fromSnapshot(doc))
+        .toList());
+  }
+
+  //Private Offices Services
+final CollectionReference _privateOfficeCollection=FirebaseFirestore.instance.collection("Private offices");
+
+  Future<void> addPrivateOffice(PrivateOfficeModel pom){
+    return _privateOfficeCollection.add(pom.toJson());
+  }
+  Stream<List<PrivateOfficeModel>> getPrivateOffice(){
+    return _privateOfficeCollection.snapshots().map((snapshot) =>snapshot.docs.map((doc) =>PrivateOfficeModel.fromsnapshot(doc)).toList());
+  }
+
 }
+
+

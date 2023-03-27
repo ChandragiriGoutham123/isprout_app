@@ -1,10 +1,12 @@
 import 'package:basic_app/main/button_card.dart';
 import 'package:basic_app/main/drawer_widget.dart';
-import 'package:basic_app/pages/center_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,9 @@ class DashBoard extends StatelessWidget {
               onTap: () {
                 },
             ),
-            ButtonCard(title: 'Location/Center',
+            ButtonCard(title: 'Location/Center\n ',
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context)=>(const CenterPage())));
-              },
+               },
             ),
             ButtonCard(
               title: 'Workstations',

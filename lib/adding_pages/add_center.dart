@@ -2,16 +2,17 @@ import 'package:basic_app/main/base_page.dart';
 import 'package:basic_app/main/crud.dart';
 import 'package:flutter/material.dart';
 
-import 'center_model.dart';
+import '../models/center_model.dart';
 
 class AddCenter extends StatefulWidget {
   const AddCenter({Key? key}) : super(key: key);
 
   @override
-  _AddCenterState createState() => _AddCenterState();
+  AddCenterState createState() => AddCenterState();
 }
 
-class _AddCenterState extends BasePageState<AddCenter> {
+class AddCenterState extends BasePageState<AddCenter> {
+  Crud crud=Crud();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _centerNameController = TextEditingController();
   final TextEditingController _buildingNameController = TextEditingController();
@@ -20,18 +21,19 @@ class _AddCenterState extends BasePageState<AddCenter> {
   final TextEditingController _pincodeController = TextEditingController();
   final TextEditingController _areaController = TextEditingController();
   final TextEditingController _efficiencyController = TextEditingController();
-  final TextEditingController _NoOfFloorsController = TextEditingController();
-  final TextEditingController _landlinenumController = TextEditingController();
-  final TextEditingController _carparkingController = TextEditingController();
-  final TextEditingController _bikeparkingController = TextEditingController();
-  final TextEditingController _contactnameController = TextEditingController();
-  final TextEditingController _contactnumberController = TextEditingController();
-  final TextEditingController _starttimeController = TextEditingController();
-  final TextEditingController _endtimeController = TextEditingController();
+  final TextEditingController _noOfFloorsController = TextEditingController();
+  final TextEditingController _landLineNumController = TextEditingController();
+  final TextEditingController _carParkingController = TextEditingController();
+  final TextEditingController _bikeParkingController = TextEditingController();
+  final TextEditingController _contactNameController = TextEditingController();
+  final TextEditingController _contactNumberController = TextEditingController();
+  final TextEditingController _startTimeController = TextEditingController();
+  final TextEditingController _endTimeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,21 +48,21 @@ class _AddCenterState extends BasePageState<AddCenter> {
                 textArea(_pincodeController, "Pincode"),
                 textArea(_areaController, "Total Area"),
                 textArea(_efficiencyController, "Efficiency"),
-                textArea(_NoOfFloorsController, "Number of Floors"),
-                textArea(_landlinenumController, "LandLine Number "),
-                textArea(_carparkingController, "Number of Car Parking"),
-                textArea(_bikeparkingController, "Number Of Bike Parking"),
-                textArea(_contactnameController, "Contact Name"),
-                textArea(_contactnumberController, "contact Number"),
-                textArea(_starttimeController, "Start time"),
-                textArea(_endtimeController, "End Time"),
+                textArea(_noOfFloorsController, "Number of Floors"),
+                textArea(_landLineNumController, "LandLine Number "),
+                textArea(_carParkingController, "Number of Car Parking"),
+                textArea(_bikeParkingController, "Number Of Bike Parking"),
+                textArea(_contactNameController, "Contact Name"),
+                textArea(_contactNumberController, "contact Number"),
+                textArea(_startTimeController, "Start time"),
+                textArea(_endTimeController, "End Time"),
               ],
             ),
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             ElevatedButton(
                 child: const Text('Add'),
                 onPressed: () {
-                  Crud.createCenter(CenterModel(
+                  crud.addCenter(CenterModel(
                     centerId: _idController.text,
                     centerName: _centerNameController.text,
                     buildingName: _buildingNameController.text,
@@ -69,14 +71,14 @@ class _AddCenterState extends BasePageState<AddCenter> {
                     pincode: _pincodeController.text,
                     area: _areaController.text,
                     efficiency: _efficiencyController.text,
-                    numberOfFloors: _NoOfFloorsController.text,
-                    landLineNumber: _landlinenumController.text,
-                    numberOfCarParking: _carparkingController.text,
-                    numberOfBikeParking: _bikeparkingController.text,
-                    contactName: _contactnameController.text,
-                    contactNumber: _contactnumberController.text,
-                    startTime: _starttimeController.text,
-                    endTime: _endtimeController.text,
+                    numberOfFloors: _noOfFloorsController.text,
+                    landLineNumber: _landLineNumController.text,
+                    numberOfCarParking: _carParkingController.text,
+                    numberOfBikeParking: _bikeParkingController.text,
+                    contactName: _contactNameController.text,
+                    contactNumber: _contactNumberController.text,
+                    startTime: _startTimeController.text,
+                    endTime: _endTimeController.text,
                   ));
 
                   // Clear the text fields after adding the new center
@@ -88,15 +90,18 @@ class _AddCenterState extends BasePageState<AddCenter> {
                   _pincodeController.clear();
                   _areaController.clear();
                   _efficiencyController.clear();
-                  _NoOfFloorsController.clear();
-                  _landlinenumController.clear();
-                  _carparkingController.clear();
-                  _bikeparkingController.clear();
-                  _contactnameController.clear();
-                  _contactnumberController.clear();
-                  _starttimeController.clear();
-                  _endtimeController.clear();
-                }),
+                  _noOfFloorsController.clear();
+                  _landLineNumController.clear();
+                  _carParkingController.clear();
+                  _bikeParkingController.clear();
+                  _contactNameController.clear();
+                  _contactNumberController.clear();
+                  _startTimeController.clear();
+                  _endTimeController.clear();
+                }
+                ),
+
+            const SizedBox(height: 30.0),
 
 
           ],

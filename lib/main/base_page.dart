@@ -18,9 +18,9 @@ abstract class BasePageState<T> extends State {
             maxLines: 2,
             textAlign: TextAlign.start,
             controller: controller,
-            decoration: new InputDecoration(
+            decoration: InputDecoration(
               labelText: label,
-              labelStyle: TextStyle(color: AppStyles.lightTextColor),
+              labelStyle: const TextStyle(color: AppStyles.lightTextColor),
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
             )));
