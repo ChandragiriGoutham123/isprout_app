@@ -35,12 +35,10 @@ class MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('iSprout'),
       ),
-      drawer: const MyDrawer(),
+      drawer: const DrawerWidget(),
       body: Column(
-        children: <Widget>[
-         Container(
-           child: Text('Welcome'),
-         )
+        children: const <Widget>[
+         Text('Welcome')
         ],
       ),
     );

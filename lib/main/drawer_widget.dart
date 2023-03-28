@@ -1,5 +1,5 @@
-import 'package:basic_app/adding_pages/add_serviceRequest.dart';
 import 'package:basic_app/pages/ConferenceRoom_page.dart';
+import 'package:basic_app/pages/client_page.dart';
 import 'package:basic_app/pages/location_page.dart';
 import 'package:basic_app/pages/serviceRequest_page.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +7,14 @@ import '../pages/center_page.dart';
 import '../pages/private_office_page.dart';
 import 'dashboard.dart';
 
-class MyDrawer extends StatefulWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+class DrawerWidget extends StatefulWidget {
+  const DrawerWidget({Key? key}) : super(key: key);
 
   @override
   MyDrawerState createState() => MyDrawerState();
 }
 
-class MyDrawerState extends State<MyDrawer> {
+class MyDrawerState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -106,8 +106,10 @@ class MyDrawerState extends State<MyDrawer> {
                 onTap: () {},
               ),
               ListTile(
-                title: const Text('Company'),
-                onTap: () {},
+                title: const Text('Clients'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const ClientPage()));
+                },
               ),
               ListTile(
                 title: const Text('Client Employees'),
