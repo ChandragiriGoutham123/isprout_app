@@ -1,7 +1,10 @@
+import 'package:basic_app/adding_pages/add_serviceRequest.dart';
 import 'package:basic_app/pages/ConferenceRoom_page.dart';
 import 'package:basic_app/pages/location_page.dart';
+import 'package:basic_app/pages/serviceRequest_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/center_page.dart';
+import '../pages/private_office_page.dart';
 import 'dashboard.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -40,7 +43,9 @@ class MyDrawerState extends State<MyDrawer> {
             children: [
               ListTile(
                 title: const Text('ServiceRequest'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>const ServiceRequestPage()));
+                },
               ),
               ListTile(
                 title: const Text('Bookings'),
@@ -110,7 +115,9 @@ class MyDrawerState extends State<MyDrawer> {
               ),
               ListTile(
                 title: const Text('private offices'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const PrivateOfficePage()));
+                },
               ),
               ListTile(
                 title: const Text('Conference Rooms'),

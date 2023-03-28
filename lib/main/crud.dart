@@ -4,6 +4,8 @@ import 'package:basic_app/models/location_model.dart';
 import 'package:basic_app/models/private_offices_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../models/serviceRequest_model.dart';
+
 class Crud {
   //Center Services
   final CollectionReference _centerCollection =
@@ -57,6 +59,21 @@ final CollectionReference _privateOfficeCollection=FirebaseFirestore.instance.co
   }
   Stream<List<PrivateOfficeModel>> getPrivateOffice(){
     return _privateOfficeCollection.snapshots().map((snapshot) =>snapshot.docs.map((doc) =>PrivateOfficeModel.fromsnapshot(doc)).toList());
+  }
+
+  //Service Request Services
+
+  final CollectionReference _srcollection =
+  FirebaseFirestore.instance.collection("Service requests");
+
+
+  Future<void> addServiceRequest(ServiceRequestModel serviceRequest) {
+    return _srcollection.add(serviceRequest.toJson());
+  }
+
+  Stream<List<ServiceRequestModel>> getServiceRequest() {
+    return _srcollection.snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => ServiceRequestModel.fromSnapshot(doc)).toList());
   }
 
 }

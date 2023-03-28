@@ -32,6 +32,11 @@ dependencies:
   cloud_firestore:
   flutter:
     sdk: flutter
+  dropdownfield2: ^1.0.7
+  snippet_coder_utils: ^1.0.13
+  file_picker: ^5.2.6
+  image_picker: ^0.8.7
+  image_picker_web: ^3.0.0+1
 
 
   # The following adds the Cupertino Icons font to your application.
