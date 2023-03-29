@@ -1,6 +1,7 @@
+
 import 'package:basic_app/main/base_page.dart';
 import 'package:flutter/material.dart';
-import '../main/crud.dart';
+import '../DAO/location_dao.dart';
 import '../models/location_model.dart';
 
 class AddLocation extends StatefulWidget {
@@ -24,7 +25,7 @@ class AddLocationState extends BasePageState<AddLocation> {
     _countryController.dispose();
     super.dispose();
   }
-  final Crud crud=Crud();
+  final LocationDao _locationDao= LocationDao();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class AddLocationState extends BasePageState<AddLocation> {
           ElevatedButton(
             child: const Text('Add'),
             onPressed: () {
-              crud.addLocation(LocationModel(
+              _locationDao.addLocation(LocationModel(
                   locationId: _idController.text,
                   locationName: _nameController.text,
                   state: _stateController.text,

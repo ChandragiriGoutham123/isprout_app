@@ -1,11 +1,11 @@
 import 'dart:io';
+import 'package:basic_app/DAO/service_request_dao.dart';
 import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../main/crud.dart';
 import '../models/serviceRequest_model.dart';
 
 class AddServiceRequest extends StatefulWidget {
@@ -33,7 +33,7 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
     super.dispose();
   }
 
-  final Crud crud = Crud();
+  final ServiceRequestDao _serviceRequestDao=ServiceRequestDao();
 
   List<File> selectedImages = [];
   final picker = ImagePicker();
@@ -166,50 +166,50 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                   },
                 )
               else if (indexOfCities == 2)
-                  DropDownField(
-                    controller: _centersSelected,
-                    hintText: 'Select any Center',
-                    enabled: true,
-                    itemsVisibleInDropdown: cities.length,
-                    items: bangCenters,
-                    onValueChanged: (value) {
-                      setState(() {
-                        selectCenter = value;
-                        indexOfCenters = bangCenters.indexOf(selectCenter);
-                        print(indexOfCenters);
-                      });
-                    },
-                  )
-                else if (indexOfCities == 3)
-                    DropDownField(
-                      controller: _centersSelected,
-                      hintText: 'Select any Center',
-                      enabled: true,
-                      itemsVisibleInDropdown: cities.length,
-                      items: chennaiCenters,
-                      onValueChanged: (value) {
-                        setState(() {
-                          selectCenter = value;
-                          indexOfCenters = chennaiCenters.indexOf(selectCenter);
-                          print(indexOfCenters);
-                        });
-                      },
-                    )
-                  else if (indexOfCities == 4)
-                      DropDownField(
-                        controller: _centersSelected,
-                        hintText: 'Select any Center',
-                        enabled: true,
-                        itemsVisibleInDropdown: cities.length,
-                        items: vijayCenters,
-                        onValueChanged: (value) {
-                          setState(() {
-                            selectCenter = value;
-                            indexOfCenters = vijayCenters.indexOf(selectCenter);
-                            print(indexOfCenters);
-                          });
-                        },
-                      ),
+                DropDownField(
+                  controller: _centersSelected,
+                  hintText: 'Select any Center',
+                  enabled: true,
+                  itemsVisibleInDropdown: cities.length,
+                  items: bangCenters,
+                  onValueChanged: (value) {
+                    setState(() {
+                      selectCenter = value;
+                      indexOfCenters = bangCenters.indexOf(selectCenter);
+                      print(indexOfCenters);
+                    });
+                  },
+                )
+              else if (indexOfCities == 3)
+                DropDownField(
+                  controller: _centersSelected,
+                  hintText: 'Select any Center',
+                  enabled: true,
+                  itemsVisibleInDropdown: cities.length,
+                  items: chennaiCenters,
+                  onValueChanged: (value) {
+                    setState(() {
+                      selectCenter = value;
+                      indexOfCenters = chennaiCenters.indexOf(selectCenter);
+                      print(indexOfCenters);
+                    });
+                  },
+                )
+              else if (indexOfCities == 4)
+                DropDownField(
+                  controller: _centersSelected,
+                  hintText: 'Select any Center',
+                  enabled: true,
+                  itemsVisibleInDropdown: cities.length,
+                  items: vijayCenters,
+                  onValueChanged: (value) {
+                    setState(() {
+                      selectCenter = value;
+                      indexOfCenters = vijayCenters.indexOf(selectCenter);
+                      print(indexOfCenters);
+                    });
+                  },
+                ),
               SizedBox(height: 20.0),
               if (selectCenter != "")
                 TextField(
@@ -281,7 +281,7 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                     padding: EdgeInsets.all(20.0),
                     child: ElevatedButton(
                         onPressed: () {
-                          crud.addServiceRequest(ServiceRequestModel(
+                          _serviceRequestDao.addServiceRequest(ServiceRequestModel(
                               email: _email.text,
                               location: _citiesSelected.text,
                               center: _centersSelected.text,

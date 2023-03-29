@@ -1,7 +1,8 @@
 import 'package:basic_app/adding_pages/add_conferenceRoom.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:basic_app/models/conferenceRoom_model.dart';
 import 'package:flutter/material.dart';
+
+import '../DAO/conference_room_dao.dart';
 
 class ConferenceRoomPage extends StatefulWidget {
   const ConferenceRoomPage({Key? key}) : super(key: key);
@@ -11,12 +12,12 @@ class ConferenceRoomPage extends StatefulWidget {
 }
 
 class _ConferenceRoomPageState extends State<ConferenceRoomPage> {
-  Crud crud = Crud();
+  final ConferenceRoomDao _conferenceRoomDao=ConferenceRoomDao();
   late Stream<List<ConferenceRoomModel>> _conferenceRoomStream;
 
   @override
   void initState() {
-    _conferenceRoomStream = crud.getConferenceRoom();
+    _conferenceRoomStream = _conferenceRoomDao.getConferenceRoom();
     super.initState();
   }
 

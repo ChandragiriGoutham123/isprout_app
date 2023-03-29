@@ -1,7 +1,8 @@
 import 'package:basic_app/main/base_page.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:basic_app/models/client_model.dart';
 import 'package:flutter/material.dart';
+
+import '../DAO/client_dao.dart';
 
 class AddClient extends StatefulWidget {
   const AddClient({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class AddClient extends StatefulWidget {
 }
 
 class AddClientState extends BasePageState<AddClient> {
-  Crud crud = Crud();
+  ClientDao _clientDao=ClientDao();
 
   final TextEditingController _clientNameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
@@ -79,7 +80,7 @@ class AddClientState extends BasePageState<AddClient> {
             ),
             ElevatedButton(
               onPressed: () {
-                crud.addClient(ClientModel(
+                _clientDao.addClient(ClientModel(
                     clientID: _clientIdController.text,
                     clientName: _clientNameController.text,
                     address: _addressController.text,

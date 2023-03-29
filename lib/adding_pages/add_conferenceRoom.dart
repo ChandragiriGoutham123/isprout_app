@@ -1,7 +1,8 @@
 import 'package:basic_app/main/base_page.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:basic_app/models/conferenceRoom_model.dart';
 import 'package:flutter/material.dart';
+
+import '../DAO/conference_room_dao.dart';
 
 class AddConferenceRoom extends StatefulWidget {
   const AddConferenceRoom({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class AddConferenceRoom extends StatefulWidget {
 }
 
 class AddConferenceRoomState extends BasePageState<AddConferenceRoom> {
-  Crud crud = Crud();
+final ConferenceRoomDao _conferenceRoomDao=ConferenceRoomDao();
 
   final TextEditingController _roomIdController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -35,9 +36,9 @@ class AddConferenceRoomState extends BasePageState<AddConferenceRoom> {
             textArea(_seatsController, "Number Of Seats"),
             textArea(_creditController, "Credit For 30Mins"),
             textArea(_avController, "Is Available"),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             ElevatedButton(onPressed: () {
-              crud.addConference(ConferenceRoomModel(
+              _conferenceRoomDao.addConference(ConferenceRoomModel(
                   meetingRoomId: _roomIdController.text,
                   meetingRoomName: _nameController.text,
                   centerId: _centerIdController.text,
@@ -52,7 +53,7 @@ class AddConferenceRoomState extends BasePageState<AddConferenceRoom> {
               _seatsController.clear();
               _creditController.clear();
               _avController.clear();
-            }, child: Text("Add"))
+            }, child: const Text("Add"))
 
           ],
         ),

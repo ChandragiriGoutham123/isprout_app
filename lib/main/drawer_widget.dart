@@ -1,5 +1,7 @@
 import 'package:basic_app/pages/ConferenceRoom_page.dart';
+import 'package:basic_app/pages/client-employee_page.dart';
 import 'package:basic_app/pages/client_page.dart';
+import 'package:basic_app/pages/employee_page.dart';
 import 'package:basic_app/pages/location_page.dart';
 import 'package:basic_app/pages/serviceRequest_page.dart';
 import 'package:flutter/material.dart';
@@ -113,7 +115,9 @@ class MyDrawerState extends State<DrawerWidget> {
               ),
               ListTile(
                 title: const Text('Client Employees'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const ClientEmployeePage()));
+                },
               ),
               ListTile(
                 title: const Text('private offices'),
@@ -145,7 +149,9 @@ class MyDrawerState extends State<DrawerWidget> {
               ),
               ListTile(
                 title: const Text('Employees'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const EmployeePage()));
+                },
               ),
             ],
           ),

@@ -1,7 +1,8 @@
-import 'package:basic_app/main/crud.dart';
 import 'package:basic_app/adding_pages/add_location.dart';
 import 'package:basic_app/models/location_model.dart';
 import 'package:flutter/material.dart';
+
+import '../DAO/location_dao.dart';
 
 class LocationPage extends StatefulWidget {
   const LocationPage({Key? key}) : super(key: key);
@@ -12,12 +13,12 @@ class LocationPage extends StatefulWidget {
 
 class _LocationPageState extends State<LocationPage> {
   late Stream<List<LocationModel>> _locationStream;
-  final Crud crud=Crud();
+  final LocationDao _locationDao=LocationDao();
 
   @override
   void initState() {
     super.initState();
-    _locationStream = crud.getLocations();
+    _locationStream = _locationDao.getLocations();
   }
 
   @override

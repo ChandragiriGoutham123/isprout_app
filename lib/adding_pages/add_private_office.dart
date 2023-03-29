@@ -1,7 +1,8 @@
 import 'package:basic_app/main/base_page.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:basic_app/models/private_offices_model.dart';
 import 'package:flutter/material.dart';
+
+import '../DAO/private_offices_dao.dart';
 
 class AddPrivateOffice extends StatefulWidget {
   const AddPrivateOffice({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class AddPrivateOffice extends StatefulWidget {
 }
 
 class AddPrivateOfficeState extends BasePageState<AddPrivateOffice> {
-  Crud crud = Crud();
+final PrivateOfficesDao _privateOfficesDao=PrivateOfficesDao();
 
   final TextEditingController _officeIdController = TextEditingController();
   final TextEditingController _officeNameController = TextEditingController();
@@ -77,7 +78,7 @@ class AddPrivateOfficeState extends BasePageState<AddPrivateOffice> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  crud.addPrivateOffice(PrivateOfficeModel(
+                  _privateOfficesDao.addPrivateOffice(PrivateOfficeModel(
                       privateOfficeId: _officeIdController.text,
                       privateOfficeName: _officeNameController.text,
                       centerId: _centerIdController.text,

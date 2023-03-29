@@ -2,7 +2,9 @@ import 'package:basic_app/adding_pages/add_serviceRequest.dart';
 import 'package:basic_app/models/serviceRequest_model.dart';
 import 'package:flutter/material.dart';
 
-import '../main/crud.dart';
+import '../DAO/service_request_dao.dart';
+
+
 
 class ServiceRequestPage extends StatefulWidget {
   const ServiceRequestPage({Key? key}) : super(key: key);
@@ -14,11 +16,11 @@ class ServiceRequestPage extends StatefulWidget {
 
 class _ServiceRequestPageState extends State<ServiceRequestPage> {
   late Stream<List<ServiceRequestModel>> _srStream;
-  final Crud crud = Crud();
+  final ServiceRequestDao _serviceRequestDao=ServiceRequestDao();
 
   @override
   void initState() {
-    _srStream = crud.getServiceRequest();
+    _srStream = _serviceRequestDao.getServiceRequest();
     super.initState();
   }
 

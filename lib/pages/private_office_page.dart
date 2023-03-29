@@ -1,7 +1,7 @@
 import 'package:basic_app/adding_pages/add_private_office.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:flutter/material.dart';
 
+import '../DAO/private_offices_dao.dart';
 import '../models/private_offices_model.dart';
 
 class PrivateOfficePage extends StatefulWidget {
@@ -13,11 +13,11 @@ class PrivateOfficePage extends StatefulWidget {
 
 class _PrivateOfficePageState extends State<PrivateOfficePage> {
   late Stream<List<PrivateOfficeModel>> _privateOfficeStream;
-  Crud crud = Crud();
+final PrivateOfficesDao _privateOfficesDao=PrivateOfficesDao();
 
   @override
   void initState() {
-    _privateOfficeStream = crud.getPrivateOffice();
+    _privateOfficeStream = _privateOfficesDao.getPrivateOffice();
     super.initState();
   }
 

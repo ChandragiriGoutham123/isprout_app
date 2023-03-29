@@ -1,7 +1,7 @@
 import 'package:basic_app/main/base_page.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:flutter/material.dart';
 
+import '../DAO/center_dao.dart';
 import '../models/center_model.dart';
 
 class AddCenter extends StatefulWidget {
@@ -12,7 +12,7 @@ class AddCenter extends StatefulWidget {
 }
 
 class AddCenterState extends BasePageState<AddCenter> {
-  Crud crud=Crud();
+  CenterDao _centerDao=CenterDao();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _centerNameController = TextEditingController();
   final TextEditingController _buildingNameController = TextEditingController();
@@ -62,7 +62,7 @@ class AddCenterState extends BasePageState<AddCenter> {
             ElevatedButton(
                 child: const Text('Add'),
                 onPressed: () {
-                  crud.addCenter(CenterModel(
+                _centerDao.addCenter(CenterModel(
                     centerId: _idController.text,
                     centerName: _centerNameController.text,
                     buildingName: _buildingNameController.text,

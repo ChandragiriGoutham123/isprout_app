@@ -19,10 +19,15 @@ abstract class BasePageState<T> extends State {
             textAlign: TextAlign.start,
             controller: controller,
             decoration: InputDecoration(
+              border: const OutlineInputBorder(),
               labelText: label,
               labelStyle: const TextStyle(color: AppStyles.lightTextColor),
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
+              // focusedBorder: InputBorder.none,
+              // enabledBorder: InputBorder.none,
             )));
   }
+
+
+
+
 }

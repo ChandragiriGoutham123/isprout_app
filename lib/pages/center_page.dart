@@ -1,6 +1,6 @@
 import 'package:basic_app/models/center_model.dart';
-import 'package:basic_app/main/crud.dart';
 import 'package:flutter/material.dart';
+import '../DAO/center_dao.dart';
 import '../adding_pages/add_center.dart';
 
 class CenterPage extends StatefulWidget {
@@ -12,12 +12,12 @@ class CenterPage extends StatefulWidget {
 
 class _CenterPageState extends State<CenterPage> {
   late Stream<List<CenterModel>> _centersStream;
-  Crud crud = Crud();
+final CenterDao _centerDao=CenterDao();
 
   @override
   void initState() {
     super.initState();
-    _centersStream = crud.getCenter();
+    _centersStream = _centerDao.getCenter();
   }
 
   @override
@@ -40,7 +40,7 @@ class _CenterPageState extends State<CenterPage> {
               Container(
                   width: MediaQuery.of(context).size.width,
                   color: Colors.redAccent,
-                  child: Scrollbar(
+                  child: SizedBox(
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: DataTable(

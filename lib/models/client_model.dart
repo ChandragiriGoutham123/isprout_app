@@ -53,7 +53,8 @@ class ClientModel {
 
   factory ClientModel.fromSnapshot(DocumentSnapshot snap){
     var snapshot = snap.data() as Map<String, dynamic>;
-    return ClientModel(clientID: snapshot["clientID"],
+    return ClientModel(
+        clientID: snapshot["clientID"],
         clientName: snapshot["clientName"],
         address: snapshot[" address"],
         PAN: snapshot["PAN"],
