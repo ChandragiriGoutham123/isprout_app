@@ -51,7 +51,7 @@ class _ConferenceRoomPageState extends State<ConferenceRoomPage> {
                       rows: conferenceRoom
                           .map((cr) =>
                           DataRow(cells: [
-                            DataCell(Text(cr.centerId)),
+                            DataCell(Text(cr.meetingRoomId)),
                             DataCell(Text(cr.meetingRoomName)),
                             DataCell(Text(cr.centerId)),
                             DataCell(Text(cr.size)),

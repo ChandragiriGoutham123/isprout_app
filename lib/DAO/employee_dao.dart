@@ -6,7 +6,7 @@ class EmployeeDao {
       FirebaseFirestore.instance.collection("Employee");
 
   Future<void> addEmp(EmployeeModel employee) {
-    return _employeeRef.add(employee.toJson());
+    return _employeeRef.doc(employee.empID).set(employee.toJson());
   }
 
   Stream<List<EmployeeModel>> getEmp() {

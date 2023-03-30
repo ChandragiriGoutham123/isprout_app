@@ -8,7 +8,7 @@ class ConferenceRoomDao{
   FirebaseFirestore.instance.collection("Conference Rooms");
 
   Future<void> addConference(ConferenceRoomModel room) {
-    return _conferenceRoomCollection.add(room.toJson());
+    return _conferenceRoomCollection.doc(room.meetingRoomId).set(room.toJson());
   }
 
   Stream<List<ConferenceRoomModel>> getConferenceRoom() {

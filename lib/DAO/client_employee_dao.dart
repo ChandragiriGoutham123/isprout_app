@@ -7,7 +7,7 @@ class ClientEmployeeDao{
   FirebaseFirestore.instance.collection("Client Employee");
 
   Future<void> addCE(ClientEmployeeModel cem) {
-    return _clientEmpCollection.add(cem.toJson());
+    return _clientEmpCollection.doc(cem.clientID).set(cem.toJson());
   }
 
   Stream<List<ClientEmployeeModel>> getCE() {

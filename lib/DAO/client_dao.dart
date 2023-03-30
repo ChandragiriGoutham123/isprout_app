@@ -7,7 +7,7 @@ class ClientDao{
   FirebaseFirestore.instance.collection("Client Details");
 
   Future<void> addClient(ClientModel client) {
-    return _clientCollection.add(client.toJson());
+    return _clientCollection.doc(client.clientID).set(client.toJson());
   }
 
   Stream<List<ClientModel>> getClient() {

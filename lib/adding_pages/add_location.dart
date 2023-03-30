@@ -5,7 +5,9 @@ import '../DAO/location_dao.dart';
 import '../models/location_model.dart';
 
 class AddLocation extends StatefulWidget {
-  const AddLocation({Key? key}) : super(key: key);
+  const AddLocation(
+
+      {Key? key}) : super(key: key);
 
   @override
   AddLocationState createState() => AddLocationState();
@@ -18,7 +20,7 @@ class AddLocationState extends BasePageState<AddLocation> {
   final TextEditingController _countryController = TextEditingController();
 
   @override
-  void dispose() {
+  void dispose() {  
     _idController.dispose();
     _nameController.dispose();
     _stateController.dispose();

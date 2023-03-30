@@ -7,7 +7,7 @@ class PrivateOfficesDao{
   FirebaseFirestore.instance.collection("Private offices");
 
   Future<void> addPrivateOffice(PrivateOfficeModel pom) {
-    return _privateOfficeCollection.add(pom.toJson());
+    return _privateOfficeCollection.doc(pom.privateOfficeId).set(pom.toJson());
   }
 
   Stream<List<PrivateOfficeModel>> getPrivateOffice() {

@@ -8,7 +8,7 @@ class CenterDao{
   FirebaseFirestore.instance.collection("Centers");
 
   Future<void> addCenter(CenterModel center)  {
-    return _centerCollection.add(center.toJson());
+    return _centerCollection.doc(center.centerId).set(center.toJson());
   }
 
   Stream<List<CenterModel>> getCenter() {

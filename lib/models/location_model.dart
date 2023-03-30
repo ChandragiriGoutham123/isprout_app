@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LocationModel {
-  final String locationId;
-  final String locationName;
-  final String state;
-  final String country;
+   String locationId;
+   String locationName;
+   String state;
+   String country;
 
   LocationModel(
       {required this.locationId,
