@@ -2,6 +2,7 @@ import 'package:basic_app/DAO/booking_conference_room_dao.dart';
 import 'package:basic_app/adding_pages/add_conference_room_bookings.dart';
 import 'package:basic_app/main/drawer_widget.dart';
 import 'package:basic_app/models/booking_conference_room_model.dart';
+
 import 'package:flutter/material.dart';
 
 class ConferenceRoomBookingDetails extends StatefulWidget {
@@ -14,14 +15,17 @@ class ConferenceRoomBookingDetails extends StatefulWidget {
 
 class _ConferenceRoomBookingDetailsState
     extends State<ConferenceRoomBookingDetails> {
-  late Stream<List<BookingConferenceRoomModel>> _conferenceStream;
-  final BookingConferenceRoomDao bookingConferenceRoomDao =
+   late Stream<List<BookingConferenceRoomModel>> _conferenceStream;
+  final BookingConferenceRoomDao _bookingConferenceRoomDao =
       BookingConferenceRoomDao();
 
   @override
   void initState() {
+    print("void");
     super.initState();
-    _conferenceStream = bookingConferenceRoomDao.getBookingConferenceRooms();
+    _conferenceStream = _bookingConferenceRoomDao.getBookingConferenceRooms() as Stream<List<BookingConferenceRoomModel>>;
+
+
   }
 
   @override
@@ -34,14 +38,17 @@ class _ConferenceRoomBookingDetailsState
         centerTitle: true,
       ),
       drawer: const MyDrawer(),
-      body: StreamBuilder<List<BookingConferenceRoomModel>>(
+      body: StreamBuilder(
         stream: _conferenceStream,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
+        builder: (context, sna) {
+          if (!sna.hasData) {
+            print("no data");
+
             return const CircularProgressIndicator();
 
           }
-          final conference = snapshot.data!;
+          final conference = sna.data!;
+          print("snapshotdata: $conference");
           return ListView(
               children: conference
                   .map((doc) => Card(
@@ -55,7 +62,7 @@ class _ConferenceRoomBookingDetailsState
 
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "Booking Id:  ${doc.bookingId}",
+                                  "Booking Id:  ${doc.bookingId ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -63,7 +70,7 @@ class _ConferenceRoomBookingDetailsState
                             Container(
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "Company Id: ${doc.companyId}",
+                                  "Company Id: ${doc.companyId ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -71,7 +78,7 @@ class _ConferenceRoomBookingDetailsState
                             Container(
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "Conference Room Id: ${doc.conferenceRoomId}",
+                                  "Conference Room Id: ${doc.conferenceRoomId ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -79,7 +86,7 @@ class _ConferenceRoomBookingDetailsState
                             Container(
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "Starting Booking Date and Time: ${doc.startingDateTime}",
+                                  "Starting Booking Date and Time: ${doc.startingDateTime ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -87,7 +94,7 @@ class _ConferenceRoomBookingDetailsState
                             Container(
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "Ending Booking Date and Time: ${doc.endingDateTime}",
+                                  "Ending Booking Date and Time: ${doc.endingDateTime ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -95,7 +102,7 @@ class _ConferenceRoomBookingDetailsState
                             Container(
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "Amount: ${doc.amount}",
+                                  "Amount: ${doc.amount ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -103,7 +110,7 @@ class _ConferenceRoomBookingDetailsState
                             Container(
                                 margin: EdgeInsets.all(20),
                                 child: Text(
-                                  "comment: ${doc.comment}",
+                                  "comment: ${doc.comment ?? ''}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),

@@ -1,7 +1,7 @@
 import 'package:basic_app/DAO/booking_conference_room_dao.dart';
 import 'package:basic_app/models/booking_conference_room_model.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 class AddConferenceRoomBookings extends StatefulWidget {
   const AddConferenceRoomBookings({Key? key}) : super(key: key);
 
@@ -10,13 +10,14 @@ class AddConferenceRoomBookings extends StatefulWidget {
 }
 
 class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
-  DateTime startDateTime=DateTime(2023,03,29,5,30);
-  DateTime endDateTime = DateTime(2023,03,29,5,30);
+  DateTime startDateTime=DateTime.now();
+  DateTime endDateTime = DateTime.now();
   final TextEditingController _bookingIdSelected = TextEditingController();
   final TextEditingController _companyIdSelected = TextEditingController();
   final TextEditingController _conferenceRoomIdSelected = TextEditingController();
   final TextEditingController _invoiceAmountSelected = TextEditingController();
   final TextEditingController _descriptionSelected = TextEditingController();
+
 
   final BookingConferenceRoomDao bookingConferenceRoomDao = BookingConferenceRoomDao();
   @override
@@ -126,7 +127,13 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                     conferenceRoomId: _conferenceRoomIdSelected.text,
                     startingDateTime: startDateTime, endingDateTime: endDateTime,
                     amount: _invoiceAmountSelected.text, comment: _descriptionSelected.text));
-              }, child: Text("Add")))
+                _bookingIdSelected.clear();
+                _companyIdSelected.clear();
+                _conferenceRoomIdSelected.clear();
+                 _invoiceAmountSelected.clear();
+                 _descriptionSelected.clear();
+              }, child: Text("Add"))),
+
 
             ],
           ),
