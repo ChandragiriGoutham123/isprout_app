@@ -1,3 +1,5 @@
+import 'package:basic_app/DAO/booking_conference_room_dao.dart';
+import 'package:basic_app/models/booking_conference_room_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 class AddConferenceRoomBookings extends StatefulWidget {
@@ -10,7 +12,13 @@ class AddConferenceRoomBookings extends StatefulWidget {
 class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
   DateTime startDateTime=DateTime(2023,03,29,5,30);
   DateTime endDateTime = DateTime(2023,03,29,5,30);
+  final TextEditingController _bookingIdSelected = TextEditingController();
+  final TextEditingController _companyIdSelected = TextEditingController();
+  final TextEditingController _conferenceRoomIdSelected = TextEditingController();
+  final TextEditingController _invoiceAmountSelected = TextEditingController();
+  final TextEditingController _descriptionSelected = TextEditingController();
 
+  final BookingConferenceRoomDao bookingConferenceRoomDao = BookingConferenceRoomDao();
   @override
   Widget build(BuildContext context) {
     final hours=startDateTime.hour.toString().padLeft(2,'0');
@@ -25,7 +33,8 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
 
             children: <Widget> [
 
-              const TextField(
+               TextField(
+                controller: _bookingIdSelected,
                autocorrect: true,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -37,6 +46,7 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                     ),
               ),SizedBox(height: 20.0,),
               TextField(
+                controller: _companyIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -48,6 +58,7 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                 ),
               ),SizedBox(height: 20.0,),
               TextField(
+                controller: _conferenceRoomIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -84,7 +95,8 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                         , child: Text('${endDateTime.day}/${endDateTime.month}/${endDateTime.year}  ${endDateTime.hour}:${endDateTime.minute}'))
                   )],
               ),SizedBox(height: 20.0,),
-              const TextField(
+               TextField(
+                 controller: _invoiceAmountSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -96,8 +108,8 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                   prefixIcon: Icon(Icons.currency_rupee)
                 ),
               ),const SizedBox(height: 20,),
-              const TextField(
-
+               TextField(
+                controller: _descriptionSelected,
                 autocorrect: true,
                 maxLines: 5,
                 keyboardType: TextInputType.emailAddress,
@@ -108,7 +120,13 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                     labelStyle: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                     prefix: Icon(Icons.comment)),
-              ),Container(margin:EdgeInsets.all(20.0),child: ElevatedButton(onPressed: null, child: Text("Add")))
+              ),Container(margin:EdgeInsets.all(20.0),child: ElevatedButton(onPressed: (){
+                bookingConferenceRoomDao.addBookingConferenceRooms(BookingConferenceRoomModel(
+                    bookingId: _bookingIdSelected.text, companyId: _companyIdSelected.text,
+                    conferenceRoomId: _conferenceRoomIdSelected.text,
+                    startingDateTime: startDateTime, endingDateTime: endDateTime,
+                    amount: _invoiceAmountSelected.text, comment: _descriptionSelected.text));
+              }, child: Text("Add")))
 
             ],
           ),
