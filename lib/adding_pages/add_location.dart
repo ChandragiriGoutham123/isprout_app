@@ -4,11 +4,12 @@ import '../DAO/location_dao.dart';
 import '../models/location_model.dart';
 
 class AddLocation extends StatefulWidget {
-  const AddLocation({Key? key}) : super(key: key);
+  final String? locationId;
 
+  const AddLocation(this.locationId, {Key? key}) : super(key: key);
 
   @override
-  AddLocationState createState() => AddLocationState();
+  AddLocationState createState() => AddLocationState(locationId);
 }
 
 class AddLocationState extends BasePageState<AddLocation> {
@@ -16,6 +17,10 @@ class AddLocationState extends BasePageState<AddLocation> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _stateController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
+
+  final String? locationId;
+
+  AddLocationState(this.locationId);
 
   @override
   void dispose() {
@@ -29,12 +34,25 @@ class AddLocationState extends BasePageState<AddLocation> {
   final LocationDao _locationDao = LocationDao();
 
   @override
+  void initState() {
+    super.initState();
+    if (locationId != null) {
+      _locationDao.getLocation(locationId!).then((location) {
+        _idController.text = location.locationId;
+        _nameController.text = location.locationName;
+        _countryController.text = location.country;
+        _stateController.text = location.state;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
-          textArea(_idController, "Location Id"),
+          textArea(_idController, "Location Id", enabled: locationId == null),
           textArea(_nameController, "Location Name"),
           textArea(_stateController, "State"),
           textArea(_countryController, "Country"),
@@ -44,33 +62,24 @@ class AddLocationState extends BasePageState<AddLocation> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[ ElevatedButton(
-              child: const Text('Add'),
-              onPressed: () {
-                _locationDao.addLocation(LocationModel(
-                    locationId: _idController.text,
-                    locationName: _nameController.text,
-                    state: _stateController.text,
-                    country: _countryController.text));
-
-                _idController.clear();
-                _nameController.clear();
-                _stateController.clear();
-                _countryController.clear();
-              },
-            ),
-              ElevatedButton(onPressed: () {
-                Navigator.pop(context);
-              }, child: const Text("cancel")),
-              ElevatedButton(onPressed: () {
-                _locationDao.updateLocation(LocationModel(
-                    locationId: _idController.text,
-                    locationName: _nameController.text,
-                    state: _stateController.text,
-                    country: _countryController.text));
-              }, child: const Text("Update"))
+            children: <Widget>[
+              ElevatedButton(
+                child: const Text('Save'),
+                onPressed: () {
+                  _locationDao.saveLocation(LocationModel(
+                      locationId: _idController.text,
+                      locationName: _nameController.text,
+                      state: _stateController.text,
+                      country: _countryController.text));
+                  Navigator.pop(context);
+                },
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("cancel"))
             ],
-
           ),
         ]),
       ),

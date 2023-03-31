@@ -12,7 +12,7 @@ class LocationPage extends StatefulWidget {
 }
 
 class LocationPageState extends BasePageState<LocationPage> {
- late Stream<List<LocationModel>> _locationStream;
+  late Stream<List<LocationModel>> _locationStream;
   final LocationDao _locationDao = LocationDao();
 
   @override
@@ -51,10 +51,17 @@ class LocationPageState extends BasePageState<LocationPage> {
                       DataCell(Text(location.locationName)),
                       DataCell(Text(location.state)),
                       DataCell(Text(location.country)),
-                      DataCell(IconButton(onPressed: () {
-                       Navigator.push(context,MaterialPageRoute(builder: (context)=>const AddLocation()));
-                      }, icon: const Icon(Icons.edit)
-                      ),)
+                      DataCell(
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          AddLocation(location.locationId)));
+                            },
+                            icon: const Icon(Icons.edit)),
+                      )
                     ]),
                   )
                   .toList(),
@@ -62,18 +69,17 @@ class LocationPageState extends BasePageState<LocationPage> {
           );
         },
       ),
-      floatingActionButton:
-          FloatingActionButton.extended(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (_) => const AddLocation(),
-              );
-            },
-            tooltip: 'Add Location',
-            icon: const Icon(Icons.add),
-            label: const Text("Add Location"),
-          ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (_) => const AddLocation(null),
+          );
+        },
+        tooltip: 'Add Location',
+        icon: const Icon(Icons.add),
+        label: const Text("Add Location"),
+      ),
     );
   }
 }

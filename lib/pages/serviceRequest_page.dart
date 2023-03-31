@@ -4,19 +4,16 @@ import 'package:flutter/material.dart';
 
 import '../DAO/service_request_dao.dart';
 
-
-
 class ServiceRequestPage extends StatefulWidget {
   const ServiceRequestPage({Key? key}) : super(key: key);
 
   @override
-  State<ServiceRequestPage> createState() =>
-      _ServiceRequestPageState();
+  State<ServiceRequestPage> createState() => _ServiceRequestPageState();
 }
 
 class _ServiceRequestPageState extends State<ServiceRequestPage> {
   late Stream<List<ServiceRequestModel>> _srStream;
-  final ServiceRequestDao _serviceRequestDao=ServiceRequestDao();
+  final ServiceRequestDao _serviceRequestDao = ServiceRequestDao();
 
   @override
   void initState() {
@@ -27,7 +24,10 @@ class _ServiceRequestPageState extends State<ServiceRequestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Service Requests"), centerTitle: true,),
+      appBar: AppBar(
+        title: const Text("Service Requests"),
+        centerTitle: true,
+      ),
       body: StreamBuilder(
         stream: _srStream,
         builder: (context, snapshot) {
@@ -35,11 +35,9 @@ class _ServiceRequestPageState extends State<ServiceRequestPage> {
             return const CircularProgressIndicator();
           }
           final sr = snapshot.data;
-          return  SingleChildScrollView(
-
-
-          );
-        },),
+          return SingleChildScrollView();
+        },
+      ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             showDialog(
@@ -49,10 +47,7 @@ class _ServiceRequestPageState extends State<ServiceRequestPage> {
           },
           tooltip: 'Add Location',
           icon: const Icon(Icons.add),
-          label:
-
-          const Text("Add Location")),
-
+          label: const Text("Add Location")),
     );
-
-  }}
+  }
+}
