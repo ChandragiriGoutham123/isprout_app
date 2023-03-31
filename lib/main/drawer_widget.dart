@@ -1,13 +1,16 @@
 import 'package:basic_app/pages/ConferenceRoom_page.dart';
 import 'package:basic_app/pages/asset_page.dart';
+import 'package:basic_app/pages/bookingsmain_page.dart';
 import 'package:basic_app/pages/broker_page.dart';
 import 'package:basic_app/pages/client-employee_page.dart';
 import 'package:basic_app/pages/client_page.dart';
 import 'package:basic_app/pages/department_page.dart';
 import 'package:basic_app/pages/employee_page.dart';
+import 'package:basic_app/pages/eventmanagement_page.dart';
 import 'package:basic_app/pages/location_page.dart';
 import 'package:basic_app/pages/serviceRequest_page.dart';
 import 'package:basic_app/pages/vendor_page.dart';
+import 'package:basic_app/pages/visitorlog_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/center_page.dart';
 import '../pages/private_office_page.dart';
@@ -55,15 +58,21 @@ class MyDrawerState extends State<DrawerWidget> {
               ),
               ListTile(
                 title: const Text('Bookings'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddBookings()));
+                },
               ),
               ListTile(
                 title: const Text('Event Managements'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>const EventManagementDetails()));
+                },
               ),
               ListTile(
                 title: const Text('Visitor log'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>const VisitorLogDetails()));
+                },
               ),
               ListTile(
                 title: const Text('Parking'),
