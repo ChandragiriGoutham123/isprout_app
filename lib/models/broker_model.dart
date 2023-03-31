@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class BrokerModel {
   String brokerID;
   String name;
-  String image;
   String brokerFirmID;
   String locationID;
   String position;
@@ -13,7 +12,6 @@ class BrokerModel {
   BrokerModel(
       {required this.brokerID,
       required this.name,
-      required this.image,
       required this.brokerFirmID,
       required this.locationID,
       required this.position,
@@ -25,7 +23,6 @@ class BrokerModel {
     return BrokerModel(
         brokerID: snapshot["BrokerId"],
         name: snapshot["Name"],
-        image: snapshot["Image"],
         brokerFirmID: snapshot["BrokerFirmId"],
         locationID: snapshot["LocationId"],
         position: snapshot["Position"],
@@ -35,7 +32,6 @@ class BrokerModel {
   Map<String,dynamic> toJson()=>{
     "BrokerId":brokerID,
         "Name":name,
-        "Image":image,
         "BrokerFirmId":brokerFirmID,
         "LocationId":locationID,
         "Position":position,

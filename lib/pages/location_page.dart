@@ -12,13 +12,8 @@ class LocationPage extends StatefulWidget {
 }
 
 class LocationPageState extends BasePageState<LocationPage> {
-  late Stream<List<LocationModel>> _locationStream;
+ late Stream<List<LocationModel>> _locationStream;
   final LocationDao _locationDao = LocationDao();
-
-  final TextEditingController _idController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _stateController = TextEditingController();
-  final TextEditingController _countryController = TextEditingController();
 
   @override
   void initState() {
@@ -56,56 +51,10 @@ class LocationPageState extends BasePageState<LocationPage> {
                       DataCell(Text(location.locationName)),
                       DataCell(Text(location.state)),
                       DataCell(Text(location.country)),
-                      DataCell(IconButton(
-                        icon: const Icon(Icons.edit),
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (_) => AlertDialog(
-                              title: const Text("Update Location"),
-                              content: StatefulBuilder(
-                                builder: (BuildContext context,
-                                    StateSetter setState) {
-                                  return SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        textArea(_idController, "Location Id"),
-                                        // add location id field
-                                        textArea(
-                                            _nameController, "Location Name"),
-                                        textArea(_stateController, "State"),
-                                        textArea(_countryController, "Country"),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: const Text("Cancel"),
-                                  onPressed: () => Navigator.of(context).pop(),
-                                ),
-                                TextButton(
-                                  child: const Text("Update"),
-                                  onPressed: () {
-                                    final LocationModel updatedLocation =
-                                        LocationModel(
-                                      locationId: _idController.text,
-                                      locationName: _nameController.text,
-                                      state: _stateController.text,
-                                      country: _countryController.text,
-                                    );
-                                    _locationDao
-                                        .updateLocation(updatedLocation);
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ))
+                      DataCell(IconButton(onPressed: () {
+                       Navigator.push(context,MaterialPageRoute(builder: (context)=>const AddLocation()));
+                      }, icon: const Icon(Icons.edit)
+                      ),)
                     ]),
                   )
                   .toList(),
@@ -113,9 +62,7 @@ class LocationPageState extends BasePageState<LocationPage> {
           );
         },
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
+      floatingActionButton:
           FloatingActionButton.extended(
             onPressed: () {
               showDialog(
@@ -127,8 +74,6 @@ class LocationPageState extends BasePageState<LocationPage> {
             icon: const Icon(Icons.add),
             label: const Text("Add Location"),
           ),
-        ],
-      ),
     );
   }
 }

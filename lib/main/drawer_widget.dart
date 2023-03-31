@@ -1,4 +1,6 @@
 import 'package:basic_app/pages/ConferenceRoom_page.dart';
+import 'package:basic_app/pages/asset_page.dart';
+import 'package:basic_app/pages/broker_page.dart';
 import 'package:basic_app/pages/client-employee_page.dart';
 import 'package:basic_app/pages/client_page.dart';
 import 'package:basic_app/pages/department_page.dart';
@@ -103,7 +105,9 @@ class MyDrawerState extends State<DrawerWidget> {
               ),
               ListTile(
                 title: const Text('Assets'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const AssetPage()));
+                },
               ),
               ListTile(
                 title: const Text('Images'),
@@ -139,7 +143,9 @@ class MyDrawerState extends State<DrawerWidget> {
               ),
               ListTile(
                 title: const Text('Brokers'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const BrokerPage()));
+                },
               ),
               ListTile(
                 title: const Text('Vendors'),

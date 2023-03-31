@@ -37,9 +37,9 @@ final CenterDao _centerDao=CenterDao();
           final centers = snapshot.data!;
           return Column(
             children: <Widget>[
-              Container(
+              SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  color: Colors.redAccent,
+
                   child: SizedBox(
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
