@@ -21,11 +21,11 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Private room booking'), centerTitle: true,),
+      appBar: AppBar(title: const Text('Private room booking'), centerTitle: true,),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          margin: EdgeInsets.all(25.0),
+          margin: const EdgeInsets.all(25.0),
           child: Column(
 
             children: <Widget>[
@@ -34,7 +34,7 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
                 controller: _bookingId,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Booking Id",
                   labelText: 'Booking Id',
@@ -42,12 +42,12 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 20.0,),
+              const SizedBox(height: 20.0,),
               TextField(
                 controller: _privateOfficeId,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Private office Id",
                   labelText: 'Private office Id',
@@ -55,12 +55,12 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 20.0,),
+              const SizedBox(height: 20.0,),
               TextField(
                 controller: _companyId,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Company Id",
                   labelText: 'Company Id',
@@ -68,13 +68,13 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 20.0,),
-              SizedBox(height: 20.0,),
+              const SizedBox(height: 20.0,),
+              const SizedBox(height: 20.0,),
               TextField(
                 controller: _amount,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Enter Invoice Amount",
                     labelText: 'Enter Invoice Amount',
@@ -97,7 +97,7 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
                         color: Colors.black, fontWeight: FontWeight.bold),
                     prefix: Icon(Icons.comment)),
               ),
-              Container(margin: EdgeInsets.all(20.0),
+              Container(margin: const EdgeInsets.all(20.0),
                   child: ElevatedButton(onPressed: () {
                     bookingPrivateOfficeDao.addBookingPrivateOffices(
                         BookingPrivateOfficeModel(bookingId: _bookingId.text,
@@ -110,12 +110,12 @@ class _AddPrivateRoomBookingsState extends State<AddPrivateRoomBookings> {
                     _companyId.clear();
                     _amount.clear();
                     _comments.clear();
-                  }, child: Text("Add")))
+                  }, child: const Text("Add")))
 
             ],
           ),
         ),
       ),
-    );;
+    );
   }
 }

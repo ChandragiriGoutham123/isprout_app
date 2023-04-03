@@ -22,7 +22,12 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
   final TextEditingController _floorSelected = TextEditingController();
   final TextEditingController _roomSelected = TextEditingController();
   final TextEditingController _comment = TextEditingController();
-
+  final TextEditingController _serviceRequestIdSelected = TextEditingController();
+  final TextEditingController _requesterIdSelected = TextEditingController();
+  final TextEditingController _requestTypeSelected = TextEditingController();
+  final TextEditingController _statusSelected= TextEditingController();
+  final TextEditingController _modifiedBySelected = TextEditingController();
+  @override
   void dispose() {
     _email.dispose();
     _citiesSelected.dispose();
@@ -30,10 +35,15 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
     _floorSelected.dispose();
     _roomSelected.dispose();
     _comment.dispose();
+    _serviceRequestIdSelected.dispose();
+    _requesterIdSelected.dispose();
+    _requestTypeSelected.dispose();
+    _statusSelected.dispose();
+    _modifiedBySelected.dispose();
     super.dispose();
   }
 
-  final ServiceRequestDao _serviceRequestDao=ServiceRequestDao();
+final ServiceRequestDao _serviceRequestDao=ServiceRequestDao();
 
   List<File> selectedImages = [];
   final picker = ImagePicker();
@@ -57,7 +67,7 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
 
         // upload file
 
-        print(_filename);
+
       }
       setState(() {
         isLoading = false;
@@ -82,7 +92,7 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
   List<String> hydCenters = ["Madhapur", "Ameerpet"];
   List<String> bangCenters = ["Electronic City", "center2"];
   List<String> puneCenters = ["PuneCenter 1"];
-  List<String> chennaiCenters = ["Anna nagar", "Redhills"];
+  List<String> chennaiCenters = ["Anna nagar", "RedHills"];
   List<String> vijayCenters = ["Vijayawada center1"];
 
   @override
@@ -128,11 +138,10 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                   setState(() {
                     selectCity = value;
                     indexOfCities = cities.indexOf(selectCity);
-                    print(indexOfCities);
                   });
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               if (indexOfCities == 1)
@@ -146,7 +155,6 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                     setState(() {
                       selectCenter = value;
                       indexOfCenters = puneCenters.indexOf(selectCenter);
-                      print(indexOfCenters);
                     });
                   },
                 )
@@ -161,62 +169,58 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                     setState(() {
                       selectCenter = value;
                       indexOfCenters = hydCenters.indexOf(selectCenter);
-                      print(indexOfCenters);
                     });
                   },
                 )
               else if (indexOfCities == 2)
-                DropDownField(
-                  controller: _centersSelected,
-                  hintText: 'Select any Center',
-                  enabled: true,
-                  itemsVisibleInDropdown: cities.length,
-                  items: bangCenters,
-                  onValueChanged: (value) {
-                    setState(() {
-                      selectCenter = value;
-                      indexOfCenters = bangCenters.indexOf(selectCenter);
-                      print(indexOfCenters);
-                    });
-                  },
-                )
-              else if (indexOfCities == 3)
-                DropDownField(
-                  controller: _centersSelected,
-                  hintText: 'Select any Center',
-                  enabled: true,
-                  itemsVisibleInDropdown: cities.length,
-                  items: chennaiCenters,
-                  onValueChanged: (value) {
-                    setState(() {
-                      selectCenter = value;
-                      indexOfCenters = chennaiCenters.indexOf(selectCenter);
-                      print(indexOfCenters);
-                    });
-                  },
-                )
-              else if (indexOfCities == 4)
-                DropDownField(
-                  controller: _centersSelected,
-                  hintText: 'Select any Center',
-                  enabled: true,
-                  itemsVisibleInDropdown: cities.length,
-                  items: vijayCenters,
-                  onValueChanged: (value) {
-                    setState(() {
-                      selectCenter = value;
-                      indexOfCenters = vijayCenters.indexOf(selectCenter);
-                      print(indexOfCenters);
-                    });
-                  },
-                ),
-              SizedBox(height: 20.0),
+                  DropDownField(
+                    controller: _centersSelected,
+                    hintText: 'Select any Center',
+                    enabled: true,
+                    itemsVisibleInDropdown: cities.length,
+                    items: bangCenters,
+                    onValueChanged: (value) {
+                      setState(() {
+                        selectCenter = value;
+                        indexOfCenters = bangCenters.indexOf(selectCenter);
+                      });
+                    },
+                  )
+                else if (indexOfCities == 3)
+                    DropDownField(
+                      controller: _centersSelected,
+                      hintText: 'Select any Center',
+                      enabled: true,
+                      itemsVisibleInDropdown: cities.length,
+                      items: chennaiCenters,
+                      onValueChanged: (value) {
+                        setState(() {
+                          selectCenter = value;
+                          indexOfCenters = chennaiCenters.indexOf(selectCenter);
+                        });
+                      },
+                    )
+                  else if (indexOfCities == 4)
+                      DropDownField(
+                        controller: _centersSelected,
+                        hintText: 'Select any Center',
+                        enabled: true,
+                        itemsVisibleInDropdown: cities.length,
+                        items: vijayCenters,
+                        onValueChanged: (value) {
+                          setState(() {
+                            selectCenter = value;
+                            indexOfCenters = vijayCenters.indexOf(selectCenter);
+                          });
+                        },
+                      ),
+              const SizedBox(height: 20.0),
               if (selectCenter != "")
                 TextField(
                   controller: _floorSelected,
                   autocorrect: true,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter floor number",
                       labelText: 'Enter Floor number',
@@ -224,7 +228,7 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                           color: Colors.black, fontWeight: FontWeight.bold),
                       prefix: Icon(Icons.home)),
                 ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               if (selectCenter != "")
@@ -232,15 +236,86 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                   controller: _roomSelected,
                   autocorrect: true,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter room number",
                       labelText: 'Enter Room number',
                       labelStyle: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold),
                       prefix: Icon(Icons.home)),
+                ),const SizedBox(
+                height: 20.0,
+              ),
+              if (selectCenter != "")
+                TextField(
+                  controller: _serviceRequestIdSelected,
+                  autocorrect: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Enter Service request id",
+                      labelText: "Enter Service request id",
+                      labelStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                      prefix: Icon(Icons.home)),
+                ),const SizedBox(
+                height: 20.0,
+              ),if (selectCenter != "")
+                TextField(
+                  controller: _requesterIdSelected,
+                  autocorrect: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Enter requester id",
+                      labelText: "Enter  requester id",
+                      labelStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                      prefix: Icon(Icons.home)),
+                ),const SizedBox(
+                height: 20.0,
+              ),if (selectCenter != "")
+                TextField(
+                  controller: _requestTypeSelected,
+                  autocorrect: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Enter request type",
+                      labelText: "Enter request type",
+                      labelStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                      prefix: Icon(Icons.home)),
+                ),const SizedBox(
+                height: 20.0,
+              ),if (selectCenter != "")
+                TextField(
+                  controller: _statusSelected,
+                  autocorrect: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Enter Status",
+                      labelText: "Enter Status",
+                      labelStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                      prefix: Icon(Icons.home)),
                 ),
-              SizedBox(
+              const SizedBox(
+                height: 20.0,
+              ),if (selectCenter != "")
+                TextField(
+                  controller: _modifiedBySelected,
+                  autocorrect: true,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Enter modified by",
+                      labelText: "Enter modified by",
+                      labelStyle: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                      prefix: Icon(Icons.home)),
+                ),const SizedBox(
                 height: 20.0,
               ),
               if (selectCenter != "")
@@ -249,7 +324,7 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                   autocorrect: true,
                   maxLines: 5,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Write Problem Description",
                       labelText: 'Describe your problem',
@@ -257,28 +332,31 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                           color: Colors.black, fontWeight: FontWeight.bold),
                       prefix: Icon(Icons.comment)),
                 ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               if (selectCenter != "")
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                        child: ElevatedButton(
-                            onPressed: pickFile,
-                            child: Text('choose an image'))),
+                    ElevatedButton(
+                        onPressed: pickFile,
+                        child: const Text('choose an image')),
                   ],
-                ),
+                ),const SizedBox(
+                height: 20.0,
+              ),
               if (pickedFile != null)
                 Image.memory(
                   pickedFile!.bytes!,
                   height: 450,
                   width: 450,
-                ),
+                ),const SizedBox(
+                height: 20.0,
+              ),
               if (selectCenter != "")
                 Container(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
                         onPressed: () {
                           _serviceRequestDao.addServiceRequest(ServiceRequestModel(
@@ -287,9 +365,16 @@ class _AddServiceRequestState extends State<AddServiceRequest> {
                               center: _centersSelected.text,
                               floor: _floorSelected.text,
                               room: _roomSelected.text,
-                              comment: _comment.text));
+                              comment: _comment.text,
+                              serviceRequestId: _serviceRequestIdSelected.text,
+                              requesterId: _requesterIdSelected.text,
+                              requestType: _requestTypeSelected.text,
+                              status: _statusSelected.text,
+                              modifiedBy: _modifiedBySelected.text
+                          ));
+                     Navigator.pop(context);
                         },
-                        child: Text("Submit"))),
+                        child: const Text("Submit"))),
             ],
           ),
         ),

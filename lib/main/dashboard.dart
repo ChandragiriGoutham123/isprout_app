@@ -18,84 +18,86 @@ class DashBoard extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         color: Colors.grey[200],
-        child: Wrap(
-          children: <Widget>[
-            ButtonCard(
-              title:'Area\n ' ,
+        child: SingleChildScrollView(
+          child: Wrap(
+            children: <Widget>[
+              ButtonCard(
+                title:'Area' ,
 
-              onTap: () {
+                onTap: () {
+                  },
+              ),
+              ButtonCard(title: 'Location/Center',
+                onTap: () {
+                 },
+              ),
+              ButtonCard(
+                title: 'Workstations',
+                onTap: () {
                 },
-            ),
-            ButtonCard(title: 'Location/Center\n ',
-              onTap: () {
-               },
-            ),
-            ButtonCard(
-              title: 'Workstations',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Potential Revenue',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Employees',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Revenue',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Expenses',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Occupancy',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Clients',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Happiness Index',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Service Request',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Conf.Bookings',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Leads',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Lead PipeLine',
-              onTap: () {
-              },
-            ),
-            ButtonCard(
-              title: 'Lead Closed',
-              onTap: () {
-              },
-            ),
-          ],
+              ),
+              ButtonCard(
+                title: 'Potential Revenue',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Employees',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Revenue',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Expenses',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Occupancy',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Clients',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Happiness Index',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Service Request',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Conf.Bookings',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Leads',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Lead PipeLine',
+                onTap: () {
+                },
+              ),
+              ButtonCard(
+                title: 'Lead Closed',
+                onTap: () {
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

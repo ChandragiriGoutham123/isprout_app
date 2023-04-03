@@ -18,10 +18,10 @@ class AddVendorState extends BasePageState<AddVendor> {
   final TextEditingController _address = TextEditingController();
   final TextEditingController _departmentID = TextEditingController();
   final TextEditingController _primaryContact = TextEditingController();
-  final TextEditingController _PAN = TextEditingController();
-  final TextEditingController _GST = TextEditingController();
+  final TextEditingController _pan = TextEditingController();
+  final TextEditingController _gst = TextEditingController();
 
-  VendorsDao _vendorsDao = VendorsDao();
+  final VendorsDao _vendorsDao = VendorsDao();
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class AddVendorState extends BasePageState<AddVendor> {
             textArea(_address, "Address"),
             textArea(_departmentID, "Department Id"),
             textArea(_primaryContact, "Primary Contact"),
-            textArea(_PAN, "PAN"),
-            textArea(_GST, "GST"),
+            textArea(_pan, "PAN"),
+            textArea(_gst, "GST"),
             const SizedBox(
               height: 30,
             ),
@@ -53,17 +53,9 @@ class AddVendorState extends BasePageState<AddVendor> {
                       address: _address.text,
                       departmentID: _departmentID.text,
                       primaryContact: _primaryContact.text,
-                      PAN: _PAN.text,
-                      GST: _GST.text));
-                  _vendorID.clear();
-                  _vendorName.clear();
-                  _firmName.clear();
-                  _description.clear();
-                  _address.clear();
-                  _departmentID.clear();
-                  _primaryContact.clear();
-                  _PAN.clear();
-                  _GST.clear();
+                      PAN: _pan.text,
+                      GST: _gst.text));
+              Navigator.pop(context);
                 },
                 child: const Text("Add"))
           ],

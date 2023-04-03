@@ -13,25 +13,25 @@ class _AddParkingPageState extends State<AddParkingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Parking Allotment"),),
+      appBar: AppBar(title: const Text("Parking Allotment"),),
       body: Container(
-        margin: EdgeInsets.all(25.0),
+        margin: const EdgeInsets.all(25.0),
         child: Column(
           children: [
-            TextField(
+            const TextField(
 
               autocorrect: true,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: "Enter Parkinglot Id",
-                labelText: 'Enter parkinglot Id',
+                hintText: "Enter ParkingLot Id",
+                labelText: 'Enter parkingLot Id',
                 labelStyle: TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold),
               ),
-            ),SizedBox(
+            ),const SizedBox(
               height: 20,
-            ),TextField(
+            ),const TextField(
 
               autocorrect: true,
               keyboardType: TextInputType.emailAddress,
@@ -42,9 +42,9 @@ class _AddParkingPageState extends State<AddParkingPage> {
                 labelStyle: TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold),
               ),
-            ),SizedBox(
+            ),const SizedBox(
               height: 20,
-            ),TextField(
+            ),const TextField(
 
               autocorrect: true,
               keyboardType: TextInputType.emailAddress,
@@ -55,45 +55,45 @@ class _AddParkingPageState extends State<AddParkingPage> {
                 labelStyle: TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold),
               ),
-            ),SizedBox(
+            ),const SizedBox(
               height: 20,
             ),Row(
               children: [
-                Text(
+                const Text(
                   "select start date and time: ",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: ElevatedButton(
                         onPressed: pickStartDateTime,
                         child: Text(
                             '${startParkingDateTime.day}/${startParkingDateTime.month}/${startParkingDateTime.year}  ${startParkingDateTime.hour}:${startParkingDateTime.minute}'))),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Row(
               children: [
-                Text(
+                const Text(
                   "select End date and time: ",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: ElevatedButton(
                         onPressed: pickEndDateTime,
                         child: Text(
                             '${endParkingDateTime.day}/${endParkingDateTime.month}/${endParkingDateTime.year}  ${endParkingDateTime.hour}:${endParkingDateTime.minute}')))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-                margin: EdgeInsets.all(20.0),
-                child: ElevatedButton(onPressed: null, child: Text("Add")))
+                margin: const EdgeInsets.all(20.0),
+                child: const ElevatedButton(onPressed: null, child: Text("Add")))
           ],
         ),
       ),

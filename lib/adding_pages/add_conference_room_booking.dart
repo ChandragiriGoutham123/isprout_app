@@ -22,14 +22,12 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
   final BookingConferenceRoomDao bookingConferenceRoomDao = BookingConferenceRoomDao();
   @override
   Widget build(BuildContext context) {
-    final hours=startDateTime.hour.toString().padLeft(2,'0');
-    final minutes=startDateTime.minute.toString().padLeft(2,'0');
     return Scaffold(
-      appBar: AppBar(title: Text('conference room booking'),centerTitle: true,),
+      appBar: AppBar(title: const Text('conference room booking'),centerTitle: true,),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          margin: EdgeInsets.all(25.0),
+          margin: const EdgeInsets.all(25.0),
           child: Column(
 
             children: <Widget> [
@@ -38,44 +36,44 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                 controller: _bookingIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Booking Id",
                   labelText: 'Booking Id',
                   labelStyle: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-              ),SizedBox(height: 20.0,),
+              ),const SizedBox(height: 20.0,),
               TextField(
                 controller: _companyIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Company Id",
                   labelText: 'Company Id',
                   labelStyle: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-              ),SizedBox(height: 20.0,),
+              ),const SizedBox(height: 20.0,),
               TextField(
                 controller: _conferenceRoomIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Conference room  Id",
                   labelText: 'conference room Id',
                   labelStyle: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-              ),SizedBox(height: 20.0,),
+              ),const SizedBox(height: 20.0,),
               Row(
 
                 children: [
-                  Text("select start date and time: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                  const Text("select start date and time: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                   Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child:
 
                       ElevatedButton(onPressed: pickStartDateTime
@@ -83,24 +81,24 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                           , child: Text('${startDateTime.day}/${startDateTime.month}/${startDateTime.year}  ${startDateTime.hour}:${startDateTime.minute}'))
                   ),
                 ],
-              ),SizedBox(height: 20.0,),Row(
+              ),const SizedBox(height: 20.0,),Row(
                 children: [
 
-                  Text("select End date and time: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                  const Text("select End date and time: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                   Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child:
 
                       ElevatedButton(onPressed: pickEndDateTime
 
                           , child: Text('${endDateTime.day}/${endDateTime.month}/${endDateTime.year}  ${endDateTime.hour}:${endDateTime.minute}'))
                   )],
-              ),SizedBox(height: 20.0,),
+              ),const SizedBox(height: 20.0,),
               TextField(
                 controller: _invoiceAmountSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Enter Invoice Amount",
                     labelText: 'Enter Invoice Amount',
@@ -114,14 +112,14 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                 autocorrect: true,
                 maxLines: 5,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Write Problem Description",
                     labelText: 'Describe your problem',
                     labelStyle: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                     prefix: Icon(Icons.comment)),
-              ),Container(margin:EdgeInsets.all(20.0),child: ElevatedButton(onPressed: (){
+              ),Container(margin:const EdgeInsets.all(20.0),child: ElevatedButton(onPressed: (){
                 bookingConferenceRoomDao.addBookingConferenceRooms(BookingConferenceRoomModel(
                     bookingId: _bookingIdSelected.text, companyId: _companyIdSelected.text,
                     conferenceRoomId: _conferenceRoomIdSelected.text,
@@ -132,7 +130,7 @@ class _AddConferenceRoomBookingsState extends State<AddConferenceRoomBookings> {
                 _conferenceRoomIdSelected.clear();
                 _invoiceAmountSelected.clear();
                 _descriptionSelected.clear();
-              }, child: Text("Add"))),
+              }, child: const Text("Add"))),
 
 
             ],

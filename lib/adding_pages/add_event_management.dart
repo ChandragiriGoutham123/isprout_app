@@ -1,5 +1,4 @@
 import 'package:basic_app/DAO/event_management_dao.dart';
-import 'package:basic_app/models/booking_conference_room_model.dart';
 import 'package:basic_app/models/event_management_model.dart';
 import 'package:flutter/material.dart';
 
@@ -27,20 +26,20 @@ class _AddEventManagementState extends State<AddEventManagement> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Event Management"),
+        title: const Text("Event Management"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
-          margin: EdgeInsets.all(25.0),
+          margin: const EdgeInsets.all(25.0),
           child: Column(
             children: [
               TextField(
                 controller: _eventIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter  Event Id",
                   labelText: 'Booking Id',
@@ -48,14 +47,14 @@ class _AddEventManagementState extends State<AddEventManagement> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextField(
                 controller: _eventNameSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter  Event Name",
                   labelText: 'EventName',
@@ -63,7 +62,7 @@ class _AddEventManagementState extends State<AddEventManagement> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextField(
@@ -71,7 +70,7 @@ class _AddEventManagementState extends State<AddEventManagement> {
                 autocorrect: true,
                 maxLines: 5,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Write Event Description",
                     labelText: 'Event Description',
@@ -79,14 +78,14 @@ class _AddEventManagementState extends State<AddEventManagement> {
                         color: Colors.black, fontWeight: FontWeight.bold),
                     prefix: Icon(Icons.comment)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextField(
                 controller: _centerIdSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter  Center Id",
                   labelText: 'Center Id',
@@ -94,48 +93,48 @@ class _AddEventManagementState extends State<AddEventManagement> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     "select start date and time: ",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: ElevatedButton(
                           onPressed: pickStartDateTime,
                           child: Text(
                               '${startEventDateTime.day}/${startEventDateTime.month}/${startEventDateTime.year}  ${startEventDateTime.hour}:${startEventDateTime.minute}'))),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Row(
                 children: [
-                  Text(
+                  const Text(
                     "select End date and time: ",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: ElevatedButton(
                           onPressed: pickEndDateTime,
                           child: Text(
                               '${endEventDateTime.day}/${endEventDateTime.month}/${endEventDateTime.year}  ${endEventDateTime.hour}:${endEventDateTime.minute}')))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               TextField(
                 controller: _contactNumberSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter  Contact Number",
                   labelText: 'Contact Number',
@@ -143,14 +142,14 @@ class _AddEventManagementState extends State<AddEventManagement> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextField(
                 controller: _vendorNameSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter  Vendor Name",
                   labelText: 'Vendor Name',
@@ -158,14 +157,14 @@ class _AddEventManagementState extends State<AddEventManagement> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextField(
                 controller: _vendorContactSelected,
                 autocorrect: true,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter  Vendor Contact",
                   labelText: 'Vendor Contact Number',
@@ -173,11 +172,11 @@ class _AddEventManagementState extends State<AddEventManagement> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
-                  margin: EdgeInsets.all(20.0),
+                  margin: const EdgeInsets.all(20.0),
                   child: ElevatedButton(onPressed: () {
                     eventManagementDao.addEventManagement(EventManagementModel(eventId: _eventIdSelected.text
                         , eventName: _eventNameSelected.text,
@@ -197,7 +196,7 @@ class _AddEventManagementState extends State<AddEventManagement> {
                     _contactNumberSelected.clear();
                     _vendorNameSelected.clear();
                     _vendorContactSelected.clear();
-                  }, child: Text("Add")))
+                  }, child: const Text("Add")))
             ],
           ),
         ),
